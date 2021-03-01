@@ -59,7 +59,6 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вызовСправкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textResult = new System.Windows.Forms.TextBox();
             this.pushButton = new System.Windows.Forms.Button();
             this.cutButton = new System.Windows.Forms.Button();
             this.copy = new System.Windows.Forms.Button();
@@ -70,6 +69,7 @@
             this.newList = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.textResult = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,6 +167,7 @@
             this.повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
             this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.повторитьToolStripMenuItem.Text = "Повторить";
+            this.повторитьToolStripMenuItem.Click += new System.EventHandler(this.ПовторитьToolStripMenuItem_Click);
             // 
             // вырезатьToolStripMenuItem
             // 
@@ -284,6 +285,7 @@
             this.пускToolStripMenuItem.Name = "пускToolStripMenuItem";
             this.пускToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.пускToolStripMenuItem.Text = "Пуск";
+            this.пускToolStripMenuItem.Click += new System.EventHandler(this.ПускToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
@@ -306,15 +308,6 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
-            // 
-            // textResult
-            // 
-            this.textResult.Location = new System.Drawing.Point(13, 271);
-            this.textResult.Multiline = true;
-            this.textResult.Name = "textResult";
-            this.textResult.ReadOnly = true;
-            this.textResult.Size = new System.Drawing.Size(769, 173);
-            this.textResult.TabIndex = 10;
             // 
             // pushButton
             // 
@@ -409,6 +402,15 @@
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.ToolTip1_Popup);
             // 
+            // textResult
+            // 
+            this.textResult.Location = new System.Drawing.Point(13, 271);
+            this.textResult.Name = "textResult";
+            this.textResult.ReadOnly = true;
+            this.textResult.Size = new System.Drawing.Size(772, 167);
+            this.textResult.TabIndex = 12;
+            this.textResult.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +457,6 @@
         private System.Windows.Forms.Button copy;
         private System.Windows.Forms.Button cutButton;
         private System.Windows.Forms.Button pushButton;
-        private System.Windows.Forms.TextBox textResult;
         private System.Windows.Forms.ToolStripMenuItem создатьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
@@ -481,6 +482,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem удалитьВсеToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox textResult;
     }
 }
 

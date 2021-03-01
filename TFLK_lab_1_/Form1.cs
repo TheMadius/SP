@@ -6,8 +6,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+//https://tproger.ru/translations/validating-email-right/
 
 namespace TFLK_lab_1_
 {
@@ -73,14 +76,13 @@ namespace TFLK_lab_1_
 
         private int PageNew(string namePage = "Новый файл")
         {
-            var NewText = new TextBox();
+            var NewText = new RichTextBox();
             NewText.Location = new System.Drawing.Point(0, 0);
             NewText.Multiline = true;
             NewText.Name = "textEnter";
             NewText.Size = new System.Drawing.Size(762, 165);
             NewText.TabIndex = 9;
             NewText.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
-            NewText.ScrollBars = ScrollBars.Vertical;
 
             TabPage myTabPage = new TabPage(namePage);
             myTabPage.Controls.Add(NewText);
@@ -126,34 +128,20 @@ namespace TFLK_lab_1_
 
         private void Copy_Click(object sender, EventArgs e)
         {
-            TextBox box = (TextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            string str = box.SelectedText;
-            Clipboard.SetData(DataFormats.Text, (Object)str);
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Copy();
         }
 
         private void CutButton_Click(object sender, EventArgs e)
         {
-            TextBox box = (TextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            int start = box.SelectionStart;
-            string str = box.SelectedText;
-            Clipboard.SetData(DataFormats.Text, (Object)str);
-
-            box.Text = box.Text.Remove(box.SelectionStart, box.SelectionLength);
-            box.SelectionStart = start;
-            box.SelectionLength = 0;
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Cut();
         }
 
         private void PushButton_Click(object sender, EventArgs e)
         {
-            TextBox box = (TextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            string str = Clipboard.GetText();
-            int posCursor = box.SelectionStart;
-            int start = box.SelectionStart + str.Length;
-
-            box.Text = box.Text.Remove(box.SelectionStart, box.SelectionLength).Insert(posCursor, str);
-
-            box.SelectionStart = start;
-            box.SelectionLength = 0;
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Paste();
         }
 
         private void ГрассатикаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -163,9 +151,18 @@ namespace TFLK_lab_1_
 
         private void TextEnter_TextChanged(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+            RichTextBox textBox = (RichTextBox)sender;
             stackState[tabControl1.SelectedIndex].Push(oldStr[tabControl1.SelectedIndex]);
             oldStr[tabControl1.SelectedIndex] = textBox.Text;
+            int pos = textBox.SelectionStart;
+
+            textBox.Select(0, textBox.TextLength);
+            textBox.SelectionColor = SystemColors.WindowText;
+            
+            ColorKeyWord();
+
+            textBox.Select(0, 0);
+            textBox.SelectionStart = pos;
 
             this.backState.Enabled = true;
         }
@@ -187,9 +184,8 @@ namespace TFLK_lab_1_
 
         private void ВЫToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextBox box = (TextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            box.SelectionStart = 0;
-            box.SelectionLength = box.Text.Length;
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.SelectAll();
         }
 
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
@@ -319,5 +315,71 @@ namespace TFLK_lab_1_
                 this.tabControl1.TabPages.RemoveAt(i - 1);
             }
         }
+
+        private void ПовторитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (backstackState[tabControl1.SelectedIndex].Count == 0)
+                return;
+
+            NextState_Click(sender, e);
+        }
+
+        private  void ColorKeyWord()
+        {
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            string pattern = @"(?<=\s|^)([\w-]+\.)*[\w-]+@([\w-]+\.)+(com|ru|org)(?=\s|$|\,|\;|\.|\?|!|:|\n)";
+
+            string[] text = box.Lines;
+
+            for (int i = 0; i < text.Length; ++i)
+            {
+                Regex regex = new Regex(pattern);
+                MatchCollection matchColl = regex.Matches(text[i]);
+
+                foreach (Match match in matchColl)
+                {
+                    int size = match.Value.Length;
+                    int start = box.GetFirstCharIndexFromLine(i) + match.Index;
+
+                    box.Select(start, size);
+                    box.SelectionColor = Color.Blue;
+                }
+
+            }
+        }
+        private void ПускToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Enabled = false;
+            string pattern = @"(?<=\s|^)([\w-]+\.)*[\w-]+@([\w-]+\.)+(com|ru|org)(?=\s|$|\,|\;|\.|\?|!|:|\n)";
+            int count = 0;
+
+            this.textResult.Text = "Найденные email:\n";
+
+            string[] text = box.Lines;
+
+            for(int i = 0; i < text.Length;++i)
+            {
+                Regex regex = new Regex(pattern);
+                MatchCollection matchColl = regex.Matches(text[i]);
+              
+                foreach(Match match in matchColl)
+                {
+                    ++count;
+                    this.textResult.Text += count + ". " + match.Value;
+                    this.textResult.Text += " Строка: " + (i+1);
+                    this.textResult.Text += " Позиция в строке: " + (match.Index + 1);
+                    this.textResult.Text += "\n";
+                }
+             
+            }
+            if (count == 0)
+            {
+                this.textResult.Text += "Не найдено";
+            }
+            box.Select(0, 0);
+            box.Enabled = true;
+        }
+
     }
 }
