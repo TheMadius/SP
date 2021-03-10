@@ -70,6 +70,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.textResult = new System.Windows.Forms.RichTextBox();
+            this.регулярныеВыраженияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.конечныйАвтоматToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -282,6 +284,9 @@
             // 
             // пускToolStripMenuItem
             // 
+            this.пускToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.регулярныеВыраженияToolStripMenuItem,
+            this.конечныйАвтоматToolStripMenuItem});
             this.пускToolStripMenuItem.Name = "пускToolStripMenuItem";
             this.пускToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.пускToolStripMenuItem.Text = "Пуск";
@@ -397,6 +402,7 @@
             this.tabControl1.Size = new System.Drawing.Size(772, 192);
             this.tabControl1.TabIndex = 11;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDoubleClick);
             // 
             // toolTip1
             // 
@@ -410,6 +416,20 @@
             this.textResult.Size = new System.Drawing.Size(772, 167);
             this.textResult.TabIndex = 12;
             this.textResult.Text = "";
+            // 
+            // регулярныеВыраженияToolStripMenuItem
+            // 
+            this.регулярныеВыраженияToolStripMenuItem.Name = "регулярныеВыраженияToolStripMenuItem";
+            this.регулярныеВыраженияToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.регулярныеВыраженияToolStripMenuItem.Text = "Регулярные выражения";
+            this.регулярныеВыраженияToolStripMenuItem.Click += new System.EventHandler(this.регулярныеВыраженияToolStripMenuItem_Click);
+            // 
+            // конечныйАвтоматToolStripMenuItem
+            // 
+            this.конечныйАвтоматToolStripMenuItem.Name = "конечныйАвтоматToolStripMenuItem";
+            this.конечныйАвтоматToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.конечныйАвтоматToolStripMenuItem.Text = "Конечный автомат";
+            this.конечныйАвтоматToolStripMenuItem.Click += new System.EventHandler(this.конечныйАвтоматToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -483,6 +503,8 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem удалитьВсеToolStripMenuItem;
         private System.Windows.Forms.RichTextBox textResult;
+        private System.Windows.Forms.ToolStripMenuItem регулярныеВыраженияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem конечныйАвтоматToolStripMenuItem;
     }
 }
 
