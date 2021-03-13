@@ -75,3 +75,14 @@ C:\Users\Madius\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csproj.Gen
 C:\Users\Madius\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csproj.CoreCompileInputs.cache
 C:\Users\Madius\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.exe
 C:\Users\Madius\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.pdb
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\bin\Debug\TFLK_lab_1_.exe.config
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\bin\Debug\TFLK_lab_1_.exe
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\bin\Debug\TFLK_lab_1_.pdb
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csprojAssemblyReference.cache
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Form1.resources
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Properties.Resources.resources
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Resource1.resources
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csproj.GenerateResource.cache
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csproj.CoreCompileInputs.cache
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.exe
+C:\Users\Дима\Desktop\TFLK_lab_1_\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.pdb

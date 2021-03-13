@@ -424,6 +424,7 @@ namespace TFLK_lab_1_
             RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
 
             this.textResult.Text = "Найденные email:\n";
+
             string[] text = box.Lines;
 
             foreach (var item in text)

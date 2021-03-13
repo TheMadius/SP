@@ -10,7 +10,7 @@ namespace TFLK_lab_1_
     {
         private enum Q
         {
-            q0, q1, q2, q3, q4, q5, q6, q7, q8
+            q0, q1, q2, q3, q4, q5, q6, q7, q8, q9
         }
 
         static private bool chechStart(int pos, string str)
@@ -29,10 +29,11 @@ namespace TFLK_lab_1_
             if (pos == str.Length - 1)
                 return true;
 
-            else if (patern.IndexOf(str[pos + 1]) != -1)
+            else if (patern.IndexOf(str[pos+1]) != -1)
                 return true;
             return false;
         }
+
         static private bool chechWord(char sim)
         {
             if ((sim >= 'a' && sim <= 'z') || (sim >= 'A' && sim <= 'Z') || (sim >= '0' && sim <= '9') || (sim == '_'))
@@ -47,6 +48,9 @@ namespace TFLK_lab_1_
 
             foreach (var item in domens)
             {
+                if (item.Length + pos > str.Length)
+                    continue;
+
                 string temp = str.Substring(pos, item.Length);
                 if (item == temp)
                 {
@@ -61,6 +65,7 @@ namespace TFLK_lab_1_
             static public string checkString(string str)
         {
             string log = string.Empty;
+            string logTrue = string.Empty;
             string word = string.Empty;
             string state = string.Empty;
             string res = string.Empty;
@@ -184,10 +189,10 @@ namespace TFLK_lab_1_
 
                             if (chechDom(ref i, str, ref word))
                             {
-                                --i;
+                                i--;
                                 stat = Q.q7;
                             }
-                            else if (chechWord(str[i]))
+                            else if (chechWord(str[i+1]))
                             {
                                 word += str[i];
                                 stat = Q.q5;
@@ -205,15 +210,17 @@ namespace TFLK_lab_1_
                         }
                     case Q.q7:
                         {
-                            state += "q0 ";
+                            state += "q7 ";
                             if (chechEnd(i, str))
                             {
+                                i--;
                                 stat = Q.q8;
                             }
-                            else if (str[i] == '.')
+                            else if(chechWord(str[i+1]))
                             {
+                                i++;
                                 word += str[i];
-                                stat = Q.q6;
+                                stat = Q.q5;
                             }
                             else
                             {
@@ -230,6 +237,7 @@ namespace TFLK_lab_1_
                             state += "q8 ";
                             res = "true";
                             log += word + " " + state + res+'\n';
+                            logTrue += word + " " + state + res+'\n';
                             stat = Q.q0;
                             word = string.Empty;
                             state = string.Empty;
@@ -237,7 +245,7 @@ namespace TFLK_lab_1_
                         }
                 }
             }
-            return log;
+            return logTrue;
         }
 
     }
