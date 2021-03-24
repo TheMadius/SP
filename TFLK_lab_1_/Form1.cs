@@ -432,5 +432,21 @@ namespace TFLK_lab_1_
                 this.textResult.Text += Automat.checkString(item);
             }
         }
+
+        private void сканерToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.textResult.Text = "";
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            string[] lins = box.Lines;
+            foreach (var item in lins)
+            {
+                List<InfoLExems> lint = Scaner.findLexems(item);
+                foreach (InfoLExems lexems in lint)
+                {
+                    this.textResult.Text += lexems.name + "тип: " + lexems.lexemes + "позиция : " + lexems.posStart + "/n";
+                }
+
+            }
+        }
     }
 }

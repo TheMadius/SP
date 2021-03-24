@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Справка TextNode</title>
+<style>
+        h1 {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 250%; /* Размер шрифта в процентах */ 
+        } 
+        h2 {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 200%; /* Размер шрифта в процентах */ 
+        } 
+        p {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 14pt; /* Размер шрифта в пунктах */ 
+        }
+		.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #ccc;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button:hover {background-color: #aaa}
+
+.button:active {
+  background-color: #aaa;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);}
+        .block1 { 
+            width: 90%; 
+            height: 90%;
+            background: #ddd; 
+            padding: 5px; 
+            border: solid 1px black; 
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+		 
+		 .blockURL { 
+            width: 90%; 
+            height: 90%;
+            padding: 5px; 
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+         .block2 { 
+            width: 90%; 
+            background: #ddd; 
+            padding: 5px; 
+            float: left; 
+            position: relative; 
+            left: 70px; 
+         }
+a {
+position: relative;
+display: block;
+padding: .4em .4em .4em .8em;
+margin: .5em 0 .5em 2.5em;
+background: #D3D4DA;
+color: #444;
+font: 14px "Trebuchet MS", "Lucida Sans";
+text-shadow: 0 1px 0 rgba(255,255,255,.5);
+text-decoration: none;
+transition: all .3s ease-out;
+}
+a:hover {background: #DCDDE1;}       
+a:before {
+content: counter(li);
+counter-increment: li;
+position: absolute;
+left: -2.5em;
+top: 50%;
+margin-top: -1em;
+background: #9097A2;
+height: 2em;
+width: 2em;
+line-height: 2em;
+text-align: center;
+font-weight: bold;
+}
+a:after {
+position: absolute;
+content: "";
+border: .5em solid transparent;
+left: -1em;
+top: 50%;
+margin-top: -.5em;
+transition: all .3s ease-out;
+}
+a:hover:after {
+left: -.5em;
+border-left-color: #9097A2;
+}
+.blocklist { 
+            width: 20%; 
+            height: 90%;
+            padding: 5px 5px 5px 5px;  
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+
+       </style>
+</head>
+<body>
+    <b><h1>Справка TextNode: Конечные автоматы</h1></b>
+    <hr>
+<div class="blocklist">
+<a href="help.html">Назад</a>
+</div>
+
+<div class="block1">
+    <div class="block2">
+	
+	<b><p>Конечный автомат:</p></b>
+<ol>
+	<li>Алфавит конечного автомата:</li>
+	<ul type="square">		
+	<li>Начало строки;</li>
+	<li>Символ @, \s (' ', '\t', '#', '(',')','[',']','{','}'), ^ (Начало строки) ;</li>
+	<li>Разделители: ' ', ',', ';', '.', '?','!',':',':';</li>
+	<li>Домены верхнего уровня: com, ru</li>
+	<li>Конец строки.</li>
+	</ul>
+	<li>Перечень состояний: q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11</li>
+	<li>Начальное состояние: q0.</li>
+	<li>Конечное состояние: q11.</li>
+	<li>Функция перехода к табличной форме:</li>
+	<p><img src="table.png" alt="Функция перехода в табличной форме"></p>
+	<li>Граф:</li>
+	<p><img src="3_laba_TFYaIK.png" alt="Конечный автомат"></p>
+	</ol>
+
+</div>
+<br>
+
+	<div class="block2">
+
+	</div>
+</div>
+</body>
+</html>
