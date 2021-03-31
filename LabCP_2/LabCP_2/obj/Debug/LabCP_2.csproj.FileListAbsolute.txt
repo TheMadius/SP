@@ -1,0 +1,20 @@
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\bin\Debug\LabCP_2.exe.config
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\bin\Debug\LabCP_2.exe
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\bin\Debug\LabCP_2.pdb
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.csprojAssemblyReference.cache
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.Form1.resources
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.Properties.Resources.resources
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.csproj.GenerateResource.cache
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.csproj.CoreCompileInputs.cache
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.exe
+C:\Users\Madius\source\repos\LabCP_2\LabCP_2\obj\Debug\LabCP_2.pdb
+E:\6ой семак\LabCP_2\LabCP_2\bin\Debug\LabCP_2.exe.config
+E:\6ой семак\LabCP_2\LabCP_2\bin\Debug\LabCP_2.exe
+E:\6ой семак\LabCP_2\LabCP_2\bin\Debug\LabCP_2.pdb
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.csprojAssemblyReference.cache
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.Form1.resources
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.Properties.Resources.resources
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.csproj.GenerateResource.cache
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.csproj.CoreCompileInputs.cache
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.exe
+E:\6ой семак\LabCP_2\LabCP_2\obj\Debug\LabCP_2.pdb

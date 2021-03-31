@@ -1,0 +1,10 @@
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\bin\Debug\lab3_CP.exe.config
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\bin\Debug\lab3_CP.exe
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\bin\Debug\lab3_CP.pdb
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.csprojAssemblyReference.cache
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.Form1.resources
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.Properties.Resources.resources
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.csproj.GenerateResource.cache
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.csproj.CoreCompileInputs.cache
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.exe
+C:\Users\Дима\source\repos\lab3_CP\lab3_CP\obj\Debug\lab3_CP.pdb
