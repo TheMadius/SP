@@ -438,13 +438,17 @@ namespace TFLK_lab_1_
             this.textResult.Text = "";
             RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
             string[] lins = box.Lines;
+            int i = 1;
             foreach (var item in lins)
             {
                 List<InfoLExems> lint = Scaner.findLexems(item);
+                this.textResult.Text += "Строка : "+ i + "\n";
                 foreach (InfoLExems lexems in lint)
                 {
-                    this.textResult.Text += lexems.name + "тип: " + lexems.lexemes + "позиция : " + lexems.posStart + "/n";
+                    this.textResult.Text += lexems.name + " тип: " + lexems.lexemes + " позиция : " + lexems.posStart + "\n";
                 }
+                this.textResult.Text +="\n";
+                i++;
 
             }
         }

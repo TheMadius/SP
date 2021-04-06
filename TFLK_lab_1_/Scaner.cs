@@ -55,12 +55,11 @@ namespace TFLK_lab_1_
                     string st = "";
                     while (chechWord(str[i]) || chechNum(str[i]))
                     {
-                        i++;
                         st += str[i];
-                        if (i >= str.Length)
+                        if (i + 1>= str.Length)
                             break;
+                        i++;
                     }
-                    i--;
                     listINfo.Add(new InfoLExems(pos, Lexemes.ID, st));
                     continue;
 
@@ -82,12 +81,11 @@ namespace TFLK_lab_1_
                     string st = "";
                     while (chechNum(str[i]))
                     {
-                        i++;
                         st += str[i];
-                        if (i >= str.Length)
+                        if (i + 1 >= str.Length)
                             break;
+                        i++;
                     }
-                    i--;
                     listINfo.Add(new InfoLExems(pos, Lexemes.ID, st));
                     continue;
                 } else if (str[i] == ' ')
