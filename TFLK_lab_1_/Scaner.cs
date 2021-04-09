@@ -60,6 +60,8 @@ namespace TFLK_lab_1_
                             break;
                         i++;
                     }
+                    if (!(i + 1 >= str.Length))
+                        i--;
                     listINfo.Add(new InfoLExems(pos, Lexemes.ID, st));
                     continue;
 
@@ -79,14 +81,40 @@ namespace TFLK_lab_1_
                 {
                     int pos = i;
                     string st = "";
+                    bool flag = false;
+
                     while (chechNum(str[i]))
                     {
                         st += str[i];
                         if (i + 1 >= str.Length)
-                            break;
+                        {
+                            listINfo.Add(new InfoLExems(pos, Lexemes.NUM, st));
+                            return listINfo;
+                        }
                         i++;
                     }
-                    listINfo.Add(new InfoLExems(pos, Lexemes.ID, st));
+
+                    while ((chechWord(str[i]) || chechNum(str[i])))
+                    {
+                        flag = true;
+                        st += str[i];
+                        if (i + 1 >= str.Length)
+                        {
+                            listINfo.Add(new InfoLExems(pos, Lexemes.ERROR, st));
+                            return listINfo;
+                        }
+                        i++;
+                    }
+
+                    if (!(i + 1 >= str.Length))
+                        i--;
+
+                    if (flag)
+                        listINfo.Add(new InfoLExems(pos, Lexemes.ERROR, st));
+                    else
+                        listINfo.Add(new InfoLExems(pos, Lexemes.NUM, st));
+
+
                     continue;
                 } else if (str[i] == ' ')
                 {
