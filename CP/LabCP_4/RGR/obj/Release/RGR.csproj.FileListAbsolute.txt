@@ -1,0 +1,10 @@
+C:\Users\Madius\source\repos\IM\RGR\RGR\bin\Release\RGR.exe.config
+C:\Users\Madius\source\repos\IM\RGR\RGR\bin\Release\RGR.exe
+C:\Users\Madius\source\repos\IM\RGR\RGR\bin\Release\RGR.pdb
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.Form1.resources
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.Properties.Resources.resources
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.csproj.GenerateResource.cache
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.csproj.CoreCompileInputs.cache
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.exe
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.pdb
+C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Release\RGR.csprojAssemblyReference.cache
