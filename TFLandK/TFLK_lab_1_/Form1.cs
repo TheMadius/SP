@@ -435,6 +435,10 @@ namespace TFLK_lab_1_
 
         private void сканерToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
             this.textResult.Text = "";
             RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
             string[] lins = box.Lines;
@@ -449,8 +453,92 @@ namespace TFLK_lab_1_
                 }
                 this.textResult.Text +="\n";
                 i++;
-
             }
+        }
+
+        private void рекурсивныйСпускToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+            this.textResult.Text = "";
+            RecursiveDescent recursiveDescent = new RecursiveDescent();
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            string[] lins = box.Lines;
+            int i = 1;
+            foreach (var item in lins)
+            {
+                string str = item.Replace(" ", "");
+                recursiveDescent.setString(str);
+                recursiveDescent.isRelate();
+                string lint = recursiveDescent.Log.Replace(" ", " --> ").Remove(0, 5); ;
+                this.textResult.Text += "Строка : " + i + "\n";
+                this.textResult.Text += lint + "\n";
+                i++;
+            }
+        }
+
+        private void тестовыйПримерToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Text = "45+a*25;";
+        }
+
+        private void грамматикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("G[LA]:\nLA → E;\nE → TA\nA → ε | +TA | -TA\nT → ОВ\nВ → ε | *ОВ | / ОВ\nО → num | id | (E)\n", "Грамматика");
+        }
+
+        private void классификацияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Граматика является контекстно-свободной.", "Классификация");
+        }
+
+        private void грамматикаToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+           MessageBox.Show("<АВ>→T|<АВ>+ T|<АВ> –  T\nT → О | O * T | O / T\nО → (< АВ >) | < Идентификатор >| < ЦБЗ >\n< Идентификатор >→Б{ Б | Ц}\n< ЦБЗ >→ Ц{ Ц}" + "\nНетерминальные символы: \nT – терм,\nО – операнд,\n< Идентификатор > -идентификатор,\n< ЦБЗ > – целое число без знака,\nБ – буква латинского алфавита, a, b, …, z, A, B, …Z,\nЦ – цифра, 0, 1, …9.\n\nТерминальные символы: +, -, *, /, (, ).,[a-z],[A-Z],[0-9]", "Грамматика");
+        }
+
+        private void языкToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("L(G[AB]) = <B>[[<опер>(^k_j<B>]^j[[<опер><B>]^n)^k_i]^j]^m\n\n,где \n<B> = <ID>|<ЦБЗ>\n<ID> = Б{Б|Ц}\n<ЦБЗ> = Ц{Ц}\n<опер> = =|-|*|/\nm, j, i и n >= 0\nСумма(k_j) = Сумма(k_i)", "Язык");
+        }
+
+        private void классификацияToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Граматика является автоматной.", "Классификация");
+        }
+
+        private void таблицаКодовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+        }
+
+        private void диаграммаСостоянийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form3 form2 = new Form3();
+            form2.ShowDialog();
+        }
+
+        private void тестовыйПримерToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Text = "a + b = 1212\n121212\nfor(int i = 0)";
+        }
+
+        private void языкToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("L(G[LA]) = <B>[[<опер>(^k_j<B>]^j[[<опер><B>]^n)^k_i]^j]^m\n\n,где \n<B> = <ID>|<ЦБЗ>\n<ID> = Б{Б|Ц}\n<ЦБЗ> = Ц{Ц}\n<опер> = =|-|*|/\nm, j, i и n >= 0\nСумма(k_j) = Сумма(k_i)", "Язык");
         }
     }
 }
