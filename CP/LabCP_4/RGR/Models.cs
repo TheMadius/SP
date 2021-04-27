@@ -11,6 +11,7 @@ namespace RGR
     {
         Statistics stat;
         Generator gen = new Generator();
+        List<Customer> listCust = new List<Customer>();
         ServiceWork[] arrServ;
         Settings sett;
         public Models(Settings settings)
@@ -92,9 +93,21 @@ namespace RGR
             return gen.Exp(sett.IntensInPrCast);
         }
 
-        public void start()
+        private double getTimeWait()
+        {
+            while (true)
+            {
+                double r = gen.getCLT(100, sett.MathH, sett.DH);
+                //if (r >= sett.Min && r <= sett.Max)
+                return r / 60;
+            }
+        }
+
+        public void start(double step = 60,int change = 10)
         {
             stat = new Statistics();
+            int num = 0;
+            int postCount = 0;
             arrServ = new ServiceWork[sett.CountServ];
             double[] lastVisit = new double[sett.CountServ];
             for (int i = 0; i < arrServ.Length; ++i)
@@ -103,6 +116,7 @@ namespace RGR
                 lastVisit[i] = 0;
             }
             double temeStatus = 0;
+            double interval = step;
             double temeMoadel = sett.TimeAll;
             double nextCustom = getTimeINCust();
             stat.addTimeСoming(nextCustom);
@@ -110,20 +124,53 @@ namespace RGR
 
             temeStatus = Math.Min(nextCustom, nextPrCustom);
 
-            while (temeStatus < temeMoadel)
+            while (temeStatus <= temeMoadel)
             {
+                if(interval == temeStatus)
+                {
+                    num++;
+                    stat.T1.Add(interval / 60.0);
+
+                    if(num == change)
+                    {
+                        num = 0;
+                        stat.CoutPosInCH.Add(stat.CountCust1 - postCount);
+                        postCount = stat.CountCust1;
+                    }
+
+                    interval += step;
+                    int countQ = 0;
+                    int counthole = listCust.Count;
+                    stat.CoutPosInHole1.Add(counthole);
+                    for (int i = 0; i < arrServ.Length; ++i)
+                    {
+                        countQ += arrServ[i].countInQu() + arrServ[i].countInPrQu();
+                    }
+                    stat.CoutPosInСash1.Add(countQ);
+
+                }
+
                 if (temeStatus == nextCustom)
                 {
-                    int index = getIndexQue();
-                    if (arrServ[index].empty() && arrServ[index].getFree)
-                    {
-                        stat.DownTime += temeStatus - lastVisit[index];
-                    }                 
-                    arrServ[index].addcustem(new Customer(temeStatus,0));
+                    listCust.Add(new Customer(temeStatus, temeStatus + getTimeWait()));
                     stat.CountCust1++;
                     double add = getTimeINCust();
                     stat.addTimeСoming(add);
                     nextCustom += add;
+                }
+
+                for(int i = 0; i < listCust.Count;++i)
+                {
+                    if (temeStatus == listCust[i].TimeInQueue)
+                    {
+                        int index = getIndexQue();
+                        if (arrServ[index].empty() && arrServ[index].getFree)
+                        {
+                            stat.DownTime += temeStatus - lastVisit[index];
+                        }
+                        arrServ[index].addcustem(listCust[i]);
+                        listCust.Remove(listCust[i]);
+                    }
                 }
 
                 if (temeStatus == nextPrCustom)
@@ -134,7 +181,7 @@ namespace RGR
                         stat.DownTime += temeStatus - lastVisit[index];
                     }
                     stat.CountProirCust1++;
-                    arrServ[index].addPrCustem(new Customer(temeStatus,0));
+                    arrServ[index].addPrCustem(new Customer(temeStatus, temeStatus+0));
                     nextPrCustom += getTimeInPrCust();
                 }
 
@@ -156,8 +203,8 @@ namespace RGR
                     else
                     if (!arrServ[i].empty() && arrServ[i].getFree)
                     {
-                        lastVisit[i] = arrServ[i].nextCust().TimeIn;
-                        arrServ[i].moveQue(arrServ[i].nextCust().TimeIn);
+                        lastVisit[i] = arrServ[i].nextCust().TimeInQueue;
+                        arrServ[i].moveQue(arrServ[i].nextCust().TimeInQueue);
                     }
                 }
 
@@ -171,6 +218,15 @@ namespace RGR
                         {
                             temeStatus = arrServ[i].CustSer1.TimeEndServ;
                         }
+                    }
+                }
+                if (interval < temeStatus)
+                    temeStatus = interval;
+                foreach (var casr in listCust)
+                {
+                    if (casr.TimeInQueue < temeStatus)
+                    {
+                        temeStatus = casr.TimeInQueue;
                     }
                 }
             }

@@ -22,5 +22,6 @@ namespace RGR
         public double TimeIn { get => timeIn;}
         public double TimeStartServ { get => timeStartServ; set => timeStartServ = value; }
         public double TimeEndServ { get => timeEndServ; set => timeEndServ = value; }
+        public double TimeInQueue { get => timeInQueue; }
     }
 }

@@ -15,9 +15,15 @@ namespace RGR
     {
         Settings sett;
         Statistics stat;
+        Statistics statInSP;
         string name;
         bool Flag;
-
+        bool Flag2;
+        int N = 100;
+        double[] infCountCash ;
+        double[] infCountHost ;
+        double[] infCountAll ;
+        double[] time;
         double avgCout;
         double avgDown;
         double avgServ;
@@ -28,9 +34,10 @@ namespace RGR
             this.groupBox1.Visible = false;
             this.groupBox2.Visible = false;
             this.groupBox3.Visible = true;
-            sett = new Settings(600, 2, 0.5, 0.05, 70, 32.5, 10, 200);
+            sett = new Settings(600, 2, 0.5, 0.05, 70, 32.5, 10, 200, 70, 30);
             setSetting(sett);
             Flag = true;
+            Flag2 = true;
         }
 
         void setSetting(Settings st)
@@ -43,6 +50,8 @@ namespace RGR
             this.textBox13.Text = st.D.ToString();
             this.textBox14.Text = st.Max.ToString();
             this.textBox15.Text = st.Min.ToString();
+            this.textBox18.Text = st.DH.ToString();
+            this.textBox19.Text = st.MathH.ToString();
         }
 
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,7 +94,7 @@ namespace RGR
             this.textBox4.Text = stat.avgTimeCust().ToString();
             this.textBox5.Text = stat.avgCountCust().ToString();
             this.textBox6.Text = stat.avgLoading().ToString();
-            this.textBox7.Text = stat.DownTime.ToString();
+            this.textBox7.Text = (stat.DownTime / sett.CountServ).ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -108,6 +117,8 @@ namespace RGR
             sett.D = Convert.ToDouble(this.textBox13.Text);
             sett.Max = Convert.ToDouble(this.textBox14.Text);
             sett.Min = Convert.ToDouble(this.textBox15.Text);
+            sett.MathH = Convert.ToDouble(this.textBox19.Text);
+            sett.DH = Convert.ToDouble(this.textBox18.Text);
         }
 
         private void drowChart(string name, double[] arr, SeriesChartType type)
@@ -116,10 +127,19 @@ namespace RGR
             this.chart4.Series.Add(name);
             this.chart4.Series[name].ChartType = type;
 
-            for(int i = 0; i < arr.Length;++i)
+            for (int i = 0; i < arr.Length; ++i)
             {
                 this.chart4.Series[name].Points.AddXY(i + 1, arr[i]);
             }
+        }
+
+        private void drowChartSp(string name, double[] x, double[] y, SeriesChartType type)
+        {
+            this.chart1.Series.Clear();
+            this.chart1.Series.Add(name);
+            this.chart1.Series[name].ChartType = type;
+            for(int i = 0; i < x.Length; ++i)
+                this.chart1.Series[name].Points.AddXY(x[i], y[i]);
         }
 
         private void getAVG()
@@ -188,14 +208,14 @@ namespace RGR
                 case 1:
                     name = "Загруженность касс";
                     double[] loiding = stat.getLoading().ToArray();
-                    drowChart(name, loiding, SeriesChartType.Column);
+                    drowChart(name, loiding, SeriesChartType.Line);
                     break;
                 case 2:
                     {
                         name = "Частота:Время обслуживания";
                         double[] CustTimr = stat.getTimeCust().ToArray();
                         CustTimr = interval(8, CustTimr);
-                        drowChart(name, CustTimr, SeriesChartType.Column);
+                        drowChart(name, CustTimr, SeriesChartType.Line);
                         break;
                     }
                 case 3:
@@ -203,7 +223,7 @@ namespace RGR
                         name = "Частота:Время прихода";
                         double[] inCust = stat.getTimeСoming().ToArray();
                         inCust = interval(8, inCust);
-                        drowChart(name, inCust, SeriesChartType.Column);
+                        drowChart(name, inCust, SeriesChartType.Line);
                         break;
                     }
                 default:
@@ -223,7 +243,7 @@ namespace RGR
             this.textBox4.Text = avgServ.ToString();
             this.textBox5.Text = avgCout.ToString();
             this.textBox6.Text = avgLoud.ToString();
-            this.textBox7.Text = avgDown.ToString();
+            this.textBox7.Text = (avgDown/ sett.CountServ).ToString();
 
         }
 
@@ -241,8 +261,79 @@ namespace RGR
         {
             Settings newSett = new Settings(this.sett);
             newSett.TimeAll = Convert.ToDouble(this.textBox16.Text) * Convert.ToDouble(this.textBox17.Text) * 60.0;
-            RGR.Models model = new Models(this.sett);
+            RGR.Models model = new Models(newSett);
             model.start();
+            double[] infCountCash = model.Stat.CoutPosInСash1.ToArray();
+            double[] infCountHost = model.Stat.CoutPosInHole1.ToArray();
+            double[] infCountAll = model.Stat.CoutPosInAll1.ToArray();
+            this.time = model.Stat.T1.ToArray();
+
+            for (int i = 0; i < N-1; ++i)
+            {
+                model.start();
+                double[] temp = model.Stat.CoutPosInСash1.ToArray();
+                double[] temp1 = model.Stat.CoutPosInHole1.ToArray();
+                double[] temp2 = model.Stat.CoutPosInAll1.ToArray();
+                for(int j = 0; j < temp.Length;++j)
+                {
+                    infCountCash[j] += temp[j];
+                    infCountHost[j] += temp1[j];
+                    infCountAll[j] += temp2[j];
+                }
+            }
+
+            for (int j = 0; j < infCountCash.Length; ++j)
+            {
+                infCountCash[j] /= N;
+                infCountHost[j] /= N;
+                infCountAll[j] /= N;
+            }
+
+            this.infCountCash = infCountCash;
+            this.infCountHost = infCountHost;
+            this.infCountAll = infCountAll;
+
+            Flag2 = false;
+            comboBox2_SelectedIndexChanged(sender, e);
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Flag2)
+            {
+                return;
+            }
+            switch (this.comboBox2.SelectedIndex)
+            {
+                case 0:
+                    {
+                        name = "Процесс 1";
+                        drowChartSp(name, time, this.infCountCash, SeriesChartType.Line);
+                        break;
+                    }
+                case 1:
+                    {
+                        name = "Процесс 2";
+                        drowChartSp(name, time, this.infCountHost, SeriesChartType.Line);
+                        break;
+                    }
+                case 2:
+                    {
+                        name = "Процесс 3";
+                        drowChartSp(name, time, this.infCountAll, SeriesChartType.Line);
+                        break;
+                    }
+                case 3:
+                    {
+                        name = "Процесс 4";
+                        double[] y = statInSP.getTimeCust().ToArray();
+                        double[] x = statInSP.T1.ToArray();
+                        drowChartSp(name, x, y, SeriesChartType.Line);
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
     }
 }

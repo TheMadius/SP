@@ -49,7 +49,8 @@ namespace RGR
 
         public int countInQu()
         {
-            return queue.Count;
+            int cout = (Free) ? 0 : 1;
+            return cout+queue.Count;
         }
 
         public int countInPrQu()

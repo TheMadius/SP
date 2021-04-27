@@ -11,6 +11,11 @@ namespace RGR
         List<Customer> Cust = new List<Customer>();
         List<double> loading = new List<double>();
         List<double> TimeСoming = new List<double>();
+        List<double> CoutPosInHole = new List<double>();
+        List<double> CoutPosInСash = new List<double>();
+        List<double> CoutPosInCh = new List<double>();
+        List<double> T = new List<double>();
+
         double downTime;
         int CountCust;
         int CountProirCust;
@@ -31,6 +36,10 @@ namespace RGR
         internal List<Customer> Cust1 { get => Cust; set => Cust = value; }
         public double TotalTime { get => totalTime; set => totalTime = value; }
         public double DownTime { get => downTime; set => downTime = value; }
+        public List<double> CoutPosInHole1 { get => CoutPosInHole; set => CoutPosInHole = value; }
+        public List<double> CoutPosInСash1 { get => CoutPosInСash; set => CoutPosInСash = value; }
+        public List<double> CoutPosInCH { get => CoutPosInCh; set => CoutPosInCh = value; }
+        public List<double> T1 { get => T; set => T = value; }
 
         public double avgTimeCust()
         {

@@ -85,6 +85,10 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -329,6 +333,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.textBox18);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.textBox19);
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.textBox15);
@@ -356,7 +364,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(481, 463);
+            this.button2.Location = new System.Drawing.Point(468, 505);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 23);
             this.button2.TabIndex = 16;
@@ -559,6 +567,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(357, 21);
             this.comboBox2.TabIndex = 6;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // textBox16
             // 
@@ -604,18 +613,52 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(186, 474);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(309, 13);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Среднее квадратическое отклонение нахождения в зале(c)";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(499, 471);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(220, 20);
+            this.textBox18.TabIndex = 19;
+            this.textBox18.Text = "32,5";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(186, 430);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(274, 13);
+            this.label19.TabIndex = 18;
+            this.label19.Text = "Среднее значение времени нахождения в зале(сек.)";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(499, 427);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(220, 20);
+            this.textBox19.TabIndex = 17;
+            this.textBox19.Text = "70";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 591);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(970, 630);
@@ -692,6 +735,10 @@
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox19;
     }
 }
 
