@@ -920,7 +920,8 @@ for(double j = min; j < max;j+=step){
 		}
 	}
 	collection.add((double)count / ListTime.size());
-}]]></Body>
+}
+System.out.println("HELLO!!!!!!!!!!!!!!");	]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
