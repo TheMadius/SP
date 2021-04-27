@@ -38,6 +38,7 @@
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.результатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.графикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.случайныеПроцесыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -58,6 +59,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
@@ -76,19 +81,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.случайныеПроцесыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox17 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -139,6 +139,13 @@
             this.графикиToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.графикиToolStripMenuItem.Text = "Графики";
             this.графикиToolStripMenuItem.Click += new System.EventHandler(this.графикиToolStripMenuItem_Click);
+            // 
+            // случайныеПроцесыToolStripMenuItem
+            // 
+            this.случайныеПроцесыToolStripMenuItem.Name = "случайныеПроцесыToolStripMenuItem";
+            this.случайныеПроцесыToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.случайныеПроцесыToolStripMenuItem.Text = "Случайные процессы";
+            this.случайныеПроцесыToolStripMenuItem.Click += new System.EventHandler(this.случайныеПроцесыToolStripMenuItem_Click);
             // 
             // chart4
             // 
@@ -362,6 +369,40 @@
             this.groupBox3.Text = "Настройки";
             this.groupBox3.Visible = false;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(186, 474);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(309, 13);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Среднее квадратическое отклонение нахождения в зале(c)";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(499, 471);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(220, 20);
+            this.textBox18.TabIndex = 19;
+            this.textBox18.Text = "32,5";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(186, 430);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(274, 13);
+            this.label19.TabIndex = 18;
+            this.label19.Text = "Среднее значение времени нахождения в зале(сек.)";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(499, 427);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(220, 20);
+            this.textBox19.TabIndex = 17;
+            this.textBox19.Text = "70";
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(468, 505);
@@ -518,13 +559,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // случайныеПроцесыToolStripMenuItem
-            // 
-            this.случайныеПроцесыToolStripMenuItem.Name = "случайныеПроцесыToolStripMenuItem";
-            this.случайныеПроцесыToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.случайныеПроцесыToolStripMenuItem.Text = "Случайные процессы";
-            this.случайныеПроцесыToolStripMenuItem.Click += new System.EventHandler(this.случайныеПроцесыToolStripMenuItem_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.button4);
@@ -539,8 +573,52 @@
             this.groupBox4.Size = new System.Drawing.Size(954, 561);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Графики";
+            this.groupBox4.Text = "Случайные процессы";
             this.groupBox4.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(868, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(80, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Начать";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(552, 18);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(168, 13);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Продолжительность смены (ч.):";
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(726, 15);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(41, 20);
+            this.textBox17.TabIndex = 9;
+            this.textBox17.Text = "10";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(393, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(96, 13);
+            this.label16.TabIndex = 8;
+            this.label16.Text = "Количество дней:";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(495, 15);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(51, 20);
+            this.textBox16.TabIndex = 7;
+            this.textBox16.Text = "10";
             // 
             // chart1
             // 
@@ -561,91 +639,12 @@
             this.comboBox2.Items.AddRange(new object[] {
             "Среднее кол-во посетителей на момент времени(на кассе)",
             "Среднее кол-во посетителей на момент времени(в зале)",
-            "Среднее кол-во посетителей обслуженных за смену",
-            "Среднее время нахождения клиента в магазине"});
+            "Среднее кол-во посетителей обслуженных за смену"});
             this.comboBox2.Location = new System.Drawing.Point(12, 19);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(357, 21);
             this.comboBox2.TabIndex = 6;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // textBox16
-            // 
-            this.textBox16.Location = new System.Drawing.Point(495, 15);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(51, 20);
-            this.textBox16.TabIndex = 7;
-            this.textBox16.Text = "365";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(393, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(96, 13);
-            this.label16.TabIndex = 8;
-            this.label16.Text = "Количество дней:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(552, 18);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(168, 13);
-            this.label17.TabIndex = 10;
-            this.label17.Text = "Продолжительность смены (ч.):";
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(726, 15);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(41, 20);
-            this.textBox17.TabIndex = 9;
-            this.textBox17.Text = "10";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(868, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 23);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "Начать";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(186, 474);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(309, 13);
-            this.label18.TabIndex = 20;
-            this.label18.Text = "Среднее квадратическое отклонение нахождения в зале(c)";
-            // 
-            // textBox18
-            // 
-            this.textBox18.Location = new System.Drawing.Point(499, 471);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(220, 20);
-            this.textBox18.TabIndex = 19;
-            this.textBox18.Text = "32,5";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(186, 430);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(274, 13);
-            this.label19.TabIndex = 18;
-            this.label19.Text = "Среднее значение времени нахождения в зале(сек.)";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(499, 427);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(220, 20);
-            this.textBox19.TabIndex = 17;
-            this.textBox19.Text = "70";
             // 
             // Form1
             // 
@@ -655,10 +654,10 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(970, 630);

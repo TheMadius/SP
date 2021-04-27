@@ -22,8 +22,9 @@ namespace RGR
         int N = 100;
         double[] infCountCash ;
         double[] infCountHost ;
-        double[] infCountAll ;
+        double[] infCountCh;
         double[] time;
+        double[] time2;
         double avgCout;
         double avgDown;
         double avgServ;
@@ -265,33 +266,37 @@ namespace RGR
             model.start();
             double[] infCountCash = model.Stat.CoutPosInСash1.ToArray();
             double[] infCountHost = model.Stat.CoutPosInHole1.ToArray();
-            double[] infCountAll = model.Stat.CoutPosInAll1.ToArray();
+            double[] infCountCh = model.Stat.CoutPosInCH.ToArray();
             this.time = model.Stat.T1.ToArray();
+            this.time2 = model.Stat.Tc1.ToArray();
 
             for (int i = 0; i < N-1; ++i)
             {
                 model.start();
                 double[] temp = model.Stat.CoutPosInСash1.ToArray();
                 double[] temp1 = model.Stat.CoutPosInHole1.ToArray();
-                double[] temp2 = model.Stat.CoutPosInAll1.ToArray();
+                double[] temp2 = model.Stat.CoutPosInCH.ToArray();
                 for(int j = 0; j < temp.Length;++j)
                 {
                     infCountCash[j] += temp[j];
                     infCountHost[j] += temp1[j];
-                    infCountAll[j] += temp2[j];
                 }
+                for(int j = 0; j < temp2.Length;++j)
+                        infCountCh[j] += temp2[j];
             }
 
             for (int j = 0; j < infCountCash.Length; ++j)
             {
                 infCountCash[j] /= N;
                 infCountHost[j] /= N;
-                infCountAll[j] /= N;
             }
+            for (int j = 0; j < infCountCh.Length; ++j)
+                infCountCh[j] /= N;
+
 
             this.infCountCash = infCountCash;
             this.infCountHost = infCountHost;
-            this.infCountAll = infCountAll;
+            this.infCountCh = infCountCh;
 
             Flag2 = false;
             comboBox2_SelectedIndexChanged(sender, e);
@@ -320,7 +325,7 @@ namespace RGR
                 case 2:
                     {
                         name = "Процесс 3";
-                        drowChartSp(name, time, this.infCountAll, SeriesChartType.Line);
+                        drowChartSp(name, time2, this.infCountCh, SeriesChartType.Line);
                         break;
                     }
                 case 3:

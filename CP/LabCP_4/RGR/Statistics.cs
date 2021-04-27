@@ -15,6 +15,7 @@ namespace RGR
         List<double> CoutPosInСash = new List<double>();
         List<double> CoutPosInCh = new List<double>();
         List<double> T = new List<double>();
+        List<double> Tc = new List<double>();
 
         double downTime;
         int CountCust;
@@ -40,6 +41,7 @@ namespace RGR
         public List<double> CoutPosInСash1 { get => CoutPosInСash; set => CoutPosInСash = value; }
         public List<double> CoutPosInCH { get => CoutPosInCh; set => CoutPosInCh = value; }
         public List<double> T1 { get => T; set => T = value; }
+        public List<double> Tc1 { get => Tc; set => Tc = value; }
 
         public double avgTimeCust()
         {

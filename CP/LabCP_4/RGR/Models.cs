@@ -129,10 +129,11 @@ namespace RGR
                 if(interval == temeStatus)
                 {
                     num++;
-                    stat.T1.Add(interval / 60.0);
+                    stat.T1.Add(interval / step);
 
                     if(num == change)
                     {
+                        stat.Tc1.Add(interval / (step * change));
                         num = 0;
                         stat.CoutPosInCH.Add(stat.CountCust1 - postCount);
                         postCount = stat.CountCust1;
