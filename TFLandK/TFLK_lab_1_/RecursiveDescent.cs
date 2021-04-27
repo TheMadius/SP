@@ -27,134 +27,113 @@ namespace TFLK_lab_1_
             this.str = str;
             this.log = "";
         }
-        private bool A()
+        private void A()
         {
             this.log += " A";
             if (nowIndex >= str.Length)
             {
                 this.log += " ε";
-                return true;
+                return ;
             }
             if (str[this.nowIndex] == '+')
             {
                 this.log += " +";
                 nowIndex++;
-                if (nowIndex >= str.Length)
-                {
-                    this.log += " Error";
-                    return false;
-                }
-                if (!T())
-                    return false;
-                if (!A())
-                    return false;
-                return true;
+                T();
+                A();
+                return ;
             }
             else if (str[this.nowIndex] == '-')
             {
                 this.log += " -";
                 nowIndex++;
-                if (nowIndex >= str.Length)
-                {
-                    this.log += " Error";
-                    return false;
-                }
-                if (!T())
-                    return false;
-                if (!A())
-                    return false;
-                return true;
+                T();
+                A();
+                return;
             }
             this.log += " ε";
-            return true;
+            return ;
         }
-        private bool T()
+        private void T()
         {
             this.log += " T";
-            if (!O())
-                return false;
-            if (!B())
-                return false;
-            return true;
+            O();
+            B();
         }
-        private bool O()
+        private void O()
         {
             this.log += " O";
+            if (nowIndex >= str.Length)
+            {
+                this.log += " Error(ε)";
+                return;
+            }
             if (num())
-                return true;
+                return;
             else if (id())
-                return true;
+                return;
             else if (str[this.nowIndex] == '(')
             {
                 this.log += " (";
                 nowIndex++;
+                E();
                 if (nowIndex >= str.Length)
                 {
-                    this.log += " Error";
-                    return false;
+                    this.log += " Error(ε)";
+                    return ;
                 }
-                E();
                 if (str[this.nowIndex] == ')')
                 {
                     this.log += " )";
-                    return true;
+                    nowIndex++;
+                    return;
                 }
                 else
                 {
-                    this.log += " Error";
-                    return false;
+                    this.log += " Error(')')";
+                    return;
                 }
             }
             else
             {
-                this.log += " Error";
-                return false;
+                this.log += " Error(ε)";
+                return;
             }
         }
-        private bool B()
+        private void B()
         {
             this.log += " B";
             if (nowIndex >= str.Length)
             {
                 this.log += " ε";
-                return true;
+                return ;
             }
             if (str[this.nowIndex] == '*')
             {
                 this.log += " *";
                 nowIndex++;
-                if (nowIndex >= str.Length)
-                {
-                    this.log += " Error";
-                    return false;
-                }
-                if (!O())
-                    return false;
-                if (!B())
-                    return false;
-                return true;
+                O();
+                B();
+                return ;
 
             }
             else if (str[this.nowIndex] == '/')
             {
                 this.log += " /";
                 nowIndex++;
-                if (nowIndex >= str.Length)
-                {
-                    this.log += " Error";
-                    return false;
-                }
-                if (!O())
-                    return false;
-                if (!B())
-                    return false;
-                return true;
+                O();
+                B();
+                return;
             }
             this.log += " ε";
-            return true;
+            return ;
         }
         private bool num()
         {
+            if (nowIndex >= str.Length)
+            {
+                return false;
+            }
             if (IsDigit(str[this.nowIndex]))
             {
                 this.log += " num";
@@ -175,6 +154,10 @@ namespace TFLK_lab_1_
         }
         private bool id()
         {
+            if (nowIndex >= str.Length)
+            {
+                return false;
+            }
             if (isChar(str[this.nowIndex]))
             {
                 this.log += " id";
@@ -201,43 +184,54 @@ namespace TFLK_lab_1_
         {
             return char.IsDigit(ch);
         }
-        private bool E()
+        private void E()
         {
             this.log += " E";
-
-            if (!T())
-                return false;
-            if (!A())
-                return false;
-            return true;
-        }
-        private bool LA()
-        {
-            this.log += " LA";
-
-            if (!E())
-                return false;
+            T();
+            A();
             if (nowIndex >= str.Length)
             {
-                this.log += " Error";
-                return false;
+                return;
             }
+        }
+        private void LA()
+        {
+            this.log += " LA";
+            int oldPos = this.nowIndex;
+            E();
+            if (nowIndex >= str.Length)
+            {
+                this.log += " Error(;)";
+                return;
+            }
+
             if (str[this.nowIndex] == ';')
             {
                 this.log += " ;";
-                return true;
+                nowIndex++;
             }
             else
+                this.log += " Error(;)";
+
+            if (nowIndex >= str.Length)
             {
-                this.log += " Error";
-                return false;
+                return;
+            }
+
+            if (oldPos == nowIndex)
+                nowIndex++;
+
+            if (nowIndex < str.Length)
+            {
+                this.log += "&";
+                LA();
             }
         }
 
-        public bool isRelate()
+        public void isRelate()
         {
-            this.log = "";            
-            return LA();
+            this.log = "";    
+            LA();
         }
     }
 }

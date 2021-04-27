@@ -10,7 +10,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//https://tproger.ru/translations/validating-email-right/
 
 namespace TFLK_lab_1_
 {
@@ -472,10 +471,13 @@ namespace TFLK_lab_1_
                 string str = item.Replace(" ", "");
                 recursiveDescent.setString(str);
                 recursiveDescent.isRelate();
-                string lint = recursiveDescent.Log.Replace(" ", " --> ").Remove(0, 5); ;
                 this.textResult.Text += "Строка : " + i + "\n";
-                this.textResult.Text += lint + "\n";
-                i++;
+                foreach(var element in recursiveDescent.Log.Split(new char[] { '&' }))
+                {
+                    string lint = element.Replace(" ", " --> ").Remove(0, 5); ;
+                    this.textResult.Text += lint + "\n";
+                }
+                    i++;
             }
         }
 
