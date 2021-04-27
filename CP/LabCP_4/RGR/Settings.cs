@@ -29,6 +29,18 @@ namespace RGR
             this.max = max;
         }
 
+        public Settings(Settings obj)
+        {
+            this.timeAll = obj.timeAll;
+            this.countServ = obj.countServ;
+            this.intensINCast = obj.intensINCast;
+            this.intensInPrCast = obj.intensInPrCast;
+            this.mathServ = obj.mathServ;
+            this.d = obj.d;
+            this.min = obj.min;
+            this.max = obj.max;
+        }
+
         public double TimeAll { get => timeAll; set => timeAll = value; }
         public int CountServ { get => countServ; set => countServ = value; }
         public double IntensINCast { get => intensINCast; set => intensINCast = value; }

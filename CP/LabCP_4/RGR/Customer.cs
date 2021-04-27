@@ -9,12 +9,14 @@ namespace RGR
     class Customer
     {
         double timeIn;
+        double timeInQueue;
         double timeStartServ;
         double timeEndServ;
 
-        public Customer(double timeIn)
+        public Customer(double timeIn,double timeInQueue)
         {
             this.timeIn = timeIn;
+            this.timeInQueue = timeInQueue;
         }
 
         public double TimeIn { get => timeIn;}

@@ -119,7 +119,7 @@ namespace RGR
                     {
                         stat.DownTime += temeStatus - lastVisit[index];
                     }                 
-                    arrServ[index].addcustem(new Customer(temeStatus));
+                    arrServ[index].addcustem(new Customer(temeStatus,0));
                     stat.CountCust1++;
                     double add = getTimeINCust();
                     stat.addTimeСoming(add);
@@ -134,7 +134,7 @@ namespace RGR
                         stat.DownTime += temeStatus - lastVisit[index];
                     }
                     stat.CountProirCust1++;
-                    arrServ[index].addPrCustem(new Customer(temeStatus));
+                    arrServ[index].addPrCustem(new Customer(temeStatus,0));
                     nextPrCustom += getTimeInPrCust();
                 }
 

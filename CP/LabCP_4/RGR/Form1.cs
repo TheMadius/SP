@@ -25,8 +25,8 @@ namespace RGR
         public Form1()
         {
             InitializeComponent();
-            this.groupBox1.Visible = true;
-            this.groupBox2.Visible = true;
+            this.groupBox1.Visible = false;
+            this.groupBox2.Visible = false;
             this.groupBox3.Visible = true;
             sett = new Settings(600, 2, 0.5, 0.05, 70, 32.5, 10, 200);
             setSetting(sett);
@@ -47,19 +47,23 @@ namespace RGR
 
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.groupBox1.Visible = true;
-            this.groupBox2.Visible = true;
+            this.groupBox1.Visible = false;
+            this.groupBox2.Visible = false;
             this.groupBox3.Visible = true;
-
+            this.groupBox4.Visible = false;
+            this.button1.Visible = true;
+            this.button3.Visible = true;
             setSetting(sett);
         }
 
         private void результатыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.groupBox1.Visible = true;
+            this.groupBox1.Visible = false;
             this.groupBox2.Visible = true;
             this.groupBox3.Visible = false;
-
+            this.groupBox4.Visible = false;
+            this.button1.Visible = true;
+            this.button3.Visible = true;
         }
 
         private void графикиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,6 +71,9 @@ namespace RGR
             this.groupBox1.Visible = true;
             this.groupBox2.Visible = false;
             this.groupBox3.Visible = false;
+            this.groupBox4.Visible = false;
+            this.button1.Visible = true;
+            this.button3.Visible = true;
 
         }
 
@@ -218,6 +225,24 @@ namespace RGR
             this.textBox6.Text = avgLoud.ToString();
             this.textBox7.Text = avgDown.ToString();
 
+        }
+
+        private void случайныеПроцесыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.groupBox1.Visible = false;
+            this.groupBox2.Visible = false;
+            this.groupBox3.Visible = false;
+            this.groupBox4.Visible = true;
+            this.button1.Visible = false;
+            this.button3.Visible = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Settings newSett = new Settings(this.sett);
+            newSett.TimeAll = Convert.ToDouble(this.textBox16.Text) * Convert.ToDouble(this.textBox17.Text) * 60.0;
+            RGR.Models model = new Models(this.sett);
+            model.start();
         }
     }
 }

@@ -8,3 +8,13 @@ C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Debug\RGR.csproj.GenerateResource.ca
 C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Debug\RGR.csproj.CoreCompileInputs.cache
 C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Debug\RGR.exe
 C:\Users\Madius\source\repos\IM\RGR\RGR\obj\Debug\RGR.pdb
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\bin\Debug\RGR.exe.config
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\bin\Debug\RGR.exe
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\bin\Debug\RGR.pdb
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.csprojAssemblyReference.cache
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.Form1.resources
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.Properties.Resources.resources
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.csproj.GenerateResource.cache
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.csproj.CoreCompileInputs.cache
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.exe
+C:\Users\Madius\source\repos\SP\CP\LabCP_4\RGR\obj\Debug\RGR.pdb
