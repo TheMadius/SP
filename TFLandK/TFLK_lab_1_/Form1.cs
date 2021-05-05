@@ -26,6 +26,7 @@ namespace TFLK_lab_1_
 
             this.backState.Enabled = false;
             this.nextState.Enabled = false;
+            this.textResult.SelectionFont = new Font("Tahoma", 14);
         }
 
         private void NewList_Click(object sender, EventArgs e)
@@ -87,6 +88,7 @@ namespace TFLK_lab_1_
             NewText.Size = new System.Drawing.Size(762, 165);
             NewText.TabIndex = 9;
             NewText.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
+            NewText.SelectionFont = new Font("Tahoma", 14);
 
             TabPage myTabPage = new TabPage(namePage);
             myTabPage.Controls.Add(NewText);
@@ -347,46 +349,43 @@ namespace TFLK_lab_1_
 
         private void ПускToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private void регулярныеВыраженияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             if (tabControl1.SelectedIndex == -1)
             {
                 return;
             }
 
+            this.textResult.Text = "";
+            Parser recursiveDescent = new Parser();
             RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            box.Enabled = false;
-            string pattern = @"(?<=\s|^)([\w-]+\.)*[\w-]+@([\w-]+\.)+(com|ru|org|de|net|uk|cn|info|nl|eu)(?=\s|$|\,|\;|\.|\?|!|:|\n)";
-            int count = 0;
-
-            this.textResult.Text = "Найденные email:\n";
-
-            string[] text = box.Lines;
-
-            for (int i = 0; i < text.Length; ++i)
+            string[] lins = box.Lines;
+            int i = 1;
+            foreach (var item in lins)
             {
-                Regex regex = new Regex(pattern);
-                MatchCollection matchColl = regex.Matches(text[i]);
-
-                foreach (Match match in matchColl)
+                string str = item.Replace(" ", "");
+                recursiveDescent.setString(str);
+                recursiveDescent.isRelate();
+                this.textResult.Text += "Строка : " + i + "\n";
+                string log = recursiveDescent.Log;
+                if (log == "")
                 {
-                    ++count;
-                    this.textResult.Text += count + ". " + match.Value;
-                    this.textResult.Text += " Строка: " + (i + 1);
-                    this.textResult.Text += " Позиция в строке: " + (match.Index + 1);
-                    this.textResult.Text += "\n";
+                    this.textResult.Text += str + " - Верно\n";
                 }
+                else
+                {
+                    int kol = 1;
+                    foreach (var element in log.Split(new char[] { '\n' }))
+                    {
+                        this.textResult.Text += ((element != "") ? kol + ") " : "") + element + "\n";
+                        kol++;
+                    }
+                }
+                i++;
+            }
+        }
 
-            }
-            if (count == 0)
-            {
-                this.textResult.Text += "Не найдено";
-            }
-            box.Select(0, 0);
-            box.Enabled = true;
+        private void регулярныеВыраженияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
         }
 
         private void tabControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -415,70 +414,17 @@ namespace TFLK_lab_1_
 
         private void конечныйАвтоматToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-
-            this.textResult.Text = "Найденные email:\n";
-
-            string[] text = box.Lines;
-
-            foreach (var item in text)
-            {
-                this.textResult.Text += Automat.checkString(item);
-            }
+           
         }
 
         private void сканерToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == -1)
-            {
-                return;
-            }
-            this.textResult.Text = "";
-            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            string[] lins = box.Lines;
-            int i = 1;
-            foreach (var item in lins)
-            {
-                List<InfoLExems> lint = Scaner.findLexems(item);
-                this.textResult.Text += "Строка : "+ i + "\n";
-                foreach (InfoLExems lexems in lint)
-                {
-                    this.textResult.Text += lexems.name + " тип: " + lexems.lexemes + " позиция : " + lexems.posStart + "\n";
-                }
-                this.textResult.Text +="\n";
-                i++;
-            }
+            
         }
 
         private void рекурсивныйСпускToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == -1)
-            {
-                return;
-            }
-            this.textResult.Text = "";
-            RecursiveDescent recursiveDescent = new RecursiveDescent();
-            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
-            string[] lins = box.Lines;
-            int i = 1;
-            foreach (var item in lins)
-            {
-                string str = item.Replace(" ", "");
-                recursiveDescent.setString(str);
-                recursiveDescent.isRelate();
-                this.textResult.Text += "Строка : " + i + "\n";
-                foreach(var element in recursiveDescent.Log.Split(new char[] { '&' }))
-                {
-                    string lint = element.Replace(" ", " --> ").Remove(0, 5); ;
-                    this.textResult.Text += lint + "\n";
-                }
-                    i++;
-            }
+           
         }
 
         private void тестовыйПримерToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -541,6 +487,118 @@ namespace TFLK_lab_1_
         private void языкToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("L(G[LA]) = <B>[[<опер>(^k_j<B>]^j[[<опер><B>]^n)^k_i]^j]^m\n\n,где \n<B> = <ID>|<ЦБЗ>\n<ID> = Б{Б|Ц}\n<ЦБЗ> = Ц{Ц}\n<опер> = =|-|*|/\nm, j, i и n >= 0\nСумма(k_j) = Сумма(k_i)", "Язык");
+        }
+
+        private void пускToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void пускToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+            this.textResult.Text = "";
+            RecursiveDescent recursiveDescent = new RecursiveDescent();
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            string[] lins = box.Lines;
+            int i = 1;
+            foreach (var item in lins)
+            {
+                string str = item.Replace(" ", "");
+                recursiveDescent.setString(str);
+                recursiveDescent.isRelate();
+                this.textResult.Text += "Строка : " + i + "\n";
+                foreach (var element in recursiveDescent.Log.Split(new char[] { '&' }))
+                {
+                    string lint = element.Replace(" ", " --> ").Remove(0, 5); ;
+                    this.textResult.Text += lint + "\n";
+                }
+                i++;
+            }
+        }
+
+        private void пускToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+            this.textResult.Text = "";
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            string[] lins = box.Lines;
+            int i = 1;
+            foreach (var item in lins)
+            {
+                List<InfoLExems> lint = Scaner.findLexems(item);
+                this.textResult.Text += "Строка : " + i + "\n";
+                foreach (InfoLExems lexems in lint)
+                {
+                    this.textResult.Text += lexems.name + " тип: " + lexems.lexemes + " позиция : " + lexems.posStart + "\n";
+                }
+                this.textResult.Text += "\n";
+                i++;
+            }
+        }
+
+        private void регулярныеВыраженияToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Enabled = false;
+            string pattern = @"(?<=\s|^)([\w-]+\.)*[\w-]+@([\w-]+\.)+(com|ru|org|de|net|uk|cn|info|nl|eu)(?=\s|$|\,|\;|\.|\?|!|:|\n)";
+            int count = 0;
+
+            this.textResult.Text = "Найденные email:\n";
+
+            string[] text = box.Lines;
+
+            for (int i = 0; i < text.Length; ++i)
+            {
+                Regex regex = new Regex(pattern);
+                MatchCollection matchColl = regex.Matches(text[i]);
+
+                foreach (Match match in matchColl)
+                {
+                    ++count;
+                    this.textResult.Text += count + ". " + match.Value;
+                    this.textResult.Text += " Строка: " + (i + 1);
+                    this.textResult.Text += " Позиция в строке: " + (match.Index + 1);
+                    this.textResult.Text += "\n";
+                }
+
+            }
+            if (count == 0)
+            {
+                this.textResult.Text += "Не найдено";
+            }
+            box.Select(0, 0);
+            box.Enabled = true;
+        }
+
+        private void конечныйАвтоматToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+
+            this.textResult.Text = "Найденные email:\n";
+
+            string[] text = box.Lines;
+
+            foreach (var item in text)
+            {
+                this.textResult.Text += Automat.checkString(item);
+            }
         }
     }
 }
