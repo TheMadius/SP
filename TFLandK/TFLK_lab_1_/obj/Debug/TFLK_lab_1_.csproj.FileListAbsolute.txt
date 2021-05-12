@@ -145,3 +145,8 @@ C:\Users\User.DESKTOP-Q2FT676\Downloads\SP-master (2)\SP-master\TFLandK\TFLK_lab
 C:\Users\User.DESKTOP-Q2FT676\Downloads\SP-master (2)\SP-master\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csproj.CoreCompileInputs.cache
 C:\Users\User.DESKTOP-Q2FT676\Downloads\SP-master (2)\SP-master\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.exe
 C:\Users\User.DESKTOP-Q2FT676\Downloads\SP-master (2)\SP-master\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.pdb
+C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Form4.resources
+C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Form5.resources
+C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Form6.resources
+C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Form7.resources
+C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.Form8.resources

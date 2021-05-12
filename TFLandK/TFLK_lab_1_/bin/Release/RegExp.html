@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Справка TextNode</title>
+    <style>
+        h1 {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 250%; /* Размер шрифта в процентах */ 
+        } 
+        h2 {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 200%; /* Размер шрифта в процентах */ 
+        } 
+        p {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 14pt; /* Размер шрифта в пунктах */ 
+        }
+		.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #ccc;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button:hover {background-color: #aaa}
+
+.button:active {
+  background-color: #aaa;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);}
+        .block1 { 
+            width: 90%; 
+            height: 90%;
+            background: #ddd; 
+            padding: 5px; 
+            border: solid 1px black; 
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+		 .blockURL { 
+            width: 90%; 
+            height: 90%;
+            padding: 5px; 
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+         .block2 { 
+            width: 90%; 
+            background: #ddd; 
+            padding: 5px; 
+            float: left; 
+            position: relative; 
+            left: 70px; 
+         }
+       </style>
+</head>
+<body>
+    <b><h1>Справка TextNode: Регулярные выражения</h1></b>
+    <hr>
+<div class="blockURL">
+<a class="button" href="help.html"><< Назад</a>
+</div>
+
+
+<div class="block1">
+    <div class="block2">
+	
+	<b><p>Принцип нахождения email:</p></b>
+	
+	<ol>
+	<li>В начале определяем имя. Оно состоит из латинских букв, арабских цифр, точек, тире. Исключения составляют точки, находящиеся в начале или конце имени, решетки, восклицательные и вопросительные знаки, точки с запятой, двоеточия.</li>
+	<li>Далее определяем символ @, который является опозновательтелем для электронной почты.</li>
+	<li>Далее идет домен, который состоит из нескольких уровней. Ограничений по количеству уровней нет. Домен может состоять из латинских букв, арабских цифр, тире. Точка является разделителем. В качестве домена верхнего уровня были взяты 10 самых популярных доменов: com, ru, org, de, net, uk, cn, info, nl, eu.</li>
+	</ol>
+	
+	<p><b>Используемое регулярное выражение:</b><span style = "color: rgb(0,0,255)"> (?<=\s|^)([\w-]+\.)*[\w-]+@([\w-]+\.)+(com|ru|org|de|net|uk|cn|info|nl|eu)(?=\s|$|\,|\;|\.|\?|!|:|\n)</span></p>
+	</div>
+<br>
+
+	<div class="block2">
+
+	</div>
+</div>
+</body>
+</html>

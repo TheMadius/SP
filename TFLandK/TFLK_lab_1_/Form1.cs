@@ -177,7 +177,8 @@ namespace TFLK_lab_1_
 
         private void ГрассатикаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form6 form2 = new Form6();
+            form2.ShowDialog();
         }
 
         private void TextEnter_TextChanged(object sender, EventArgs e)
@@ -368,7 +369,7 @@ namespace TFLK_lab_1_
                 string log = recursiveDescent.Log;
                 if (log == "")
                 {
-                    this.textResult.Text += str + " - Верно\n";
+                    this.textResult.Text += str + " - Верное выражение\n";
                 }
                 else
                 {
@@ -599,6 +600,57 @@ namespace TFLK_lab_1_
             {
                 this.textResult.Text += Automat.checkString(item);
             }
+        }
+
+        private void тестовыйПримерToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == -1)
+            {
+                return;
+            }
+            RichTextBox box = (RichTextBox)tabControl1.TabPages[tabControl1.SelectedIndex].Controls["textEnter"];
+            box.Text = "read(*,*) Max;\nread(*,688*) &&Max;\nread((((*,*) sdfs,12asdddd,;";
+        }
+
+        private void постановкаЗадачиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form4 form2 = new Form4();
+            form2.ShowDialog();
+        }
+
+        private void классификацияГрамматикиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form5 form2 = new Form5();
+            form2.ShowDialog();
+        }
+
+        private void методАнализаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 form2 = new Form7();
+            form2.ShowDialog();
+        }
+
+        private void диагностикаИНейтрализацияОшибокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form8 form2 = new Form8();
+            form2.ShowDialog();
+        }
+
+        private void списокЛитературыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string lit = "\t1. Шорников Ю.В. Теория и практика языковых процессоров: учеб. пособие / Ю.В. Шорников. – Новосибирск: Изд-во НГТУ, 2004.\n\t2.Теория формальных языков и компиляторов [Электронный ресурс] / Электрон. дан. URL: https://dispace.edu.nstu.ru/didesk/course/show/2523, свободный. Яз.рус. (дата обращения 04.05.2021).";
+            MessageBox.Show(lit);
+        }
+
+        private void исходныйКодПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("code.html");
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string lit = "Данная программа разработана в целях ознакомления с дисциплиной “ Теория формальных языков и компиляторов”. В рамках первой лабораторной было написан интерфейс и основной функционал текстового редактора.  В качестве языка был выбран – C#.\n Вторым этапом разработки таксового редактора было написание языкового процессора для оператора READ языка FORTRAN. \nРуководство пользователя можно получить из пункта меню “Справка”→”Вызвать справку”.\nПо вопросам можно писать на почту: dimon.pustovskih@mail.ru\nАвтор: Пустовских Дмитрий Александрович, НГТУ, 3 курс, АВТФ\nГруппа: АВТ-813";
+            MessageBox.Show(lit.Replace("\n", "\n\t").Insert(0, "\t"));
         }
     }
 }

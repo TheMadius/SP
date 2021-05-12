@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Справка TextNode</title>
+    <style>
+        h1 {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 250%; /* Размер шрифта в процентах */ 
+        } 
+        h2 {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 200%; /* Размер шрифта в процентах */ 
+        } 
+        p {
+         font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
+         font-size: 14pt; /* Размер шрифта в пунктах */ 
+        }
+				 .rectangle {
+counter-reset: li; 
+list-style: none; 
+font: 14px "Trebuchet MS", "Lucida Sans";
+padding: 0;
+text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+.rectangle a {
+position: relative;
+display: block;
+padding: .4em .4em .4em .8em;
+margin: .5em 0 .5em 2.5em;
+background: #D3D4DA;
+color: #444;
+text-decoration: none;
+transition: all .3s ease-out;
+}
+.rectangle a:hover {background: #DCDDE1;}       
+.rectangle a:before {
+content: counter(li);
+counter-increment: li;
+position: absolute;
+left: -2.5em;
+top: 50%;
+margin-top: -1em;
+background: #9097A2;
+height: 2em;
+width: 2em;
+line-height: 2em;
+text-align: center;
+font-weight: bold;
+}
+.rectangle a:after {
+position: absolute;
+content: "";
+border: .5em solid transparent;
+left: -1em;
+top: 50%;
+margin-top: -.5em;
+transition: all .3s ease-out;
+}
+.rectangle a:hover:after {
+left: -.5em;
+border-left-color: #9097A2;
+}
+		
+		
+		 .blocklist { 
+            width: 20%; 
+            height: 90%;
+            padding: 5px 5px 5px 5px;  
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+        .block1 { 
+            width: 90%; 
+            height: 90%;
+            background: #ddd; 
+            padding: 5px; 
+            border: solid 1px black; 
+            float: left; 
+            position: relative; 
+            top: 40px; 
+            left: 70px; 
+         }
+         .block2 { 
+            width: 90%; 
+            background: #ddd; 
+            padding: 5px; 
+            float: left; 
+            position: relative; 
+            left: 70px; 
+         }
+       </style>
+</head>
+<body>
+    <b><h1>Исходный код программы</h1></b>
+    <hr>
+	
+    <div class="block1">
+    <div class="block2">
+    
+    <plaintext>  
+        using System;
+        using System.Collections.Generic;
+        using System.Linq;
+        using System.Text;
+        using System.Threading.Tasks;
+        
+        namespace TFLK_lab_1_
+        {
+            public class Parser
+            {
+                string str;
+                int nowIndex;
+                string log;
+        
+                public string Log { get => log; }
+        
+                public Parser()
+                {
+                    this.nowIndex = 0;
+                    this.str = "";
+                    this.log = "";
+                }
+        
+                private void error(int pos, string e)
+                {
+                    log += "Ошибка!! Строка " + e + " , Позиция " + pos + "\n";
+                }
+        
+                public void setString(string str)
+                {
+                    this.nowIndex = 0;
+                    this.str = str;
+                    this.log = "";
+                }
+        
+                private void state0()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+        
+                    if (str[nowIndex] == 'r')
+                    {
+                        nowIndex++;
+                        state1();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while(str[nowIndex] != 'r' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+                        error(pos,err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+        
+                        nowIndex++;
+                        state1();
+                        return;
+                    }
+                }
+                private void state1()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == 'e')
+                    {
+                        nowIndex++;
+                        state2();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != 'e' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+        
+                        nowIndex++;
+                        state2();
+                        return;
+                    }
+                }
+                private void state2()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == 'a')
+                    {
+                        nowIndex++;
+                        state3();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != 'a' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+                        
+                        nowIndex++;
+                        state3();
+                        return;
+                    }
+                }
+                private void state3()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == 'd')
+                    {
+                        nowIndex++;
+                        state4();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != 'd' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+        
+                        nowIndex++;
+                        state4();
+                        return;
+                    }
+                }
+                private void state4()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == '(')
+                    {
+                        nowIndex++;
+                        state5();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != '(' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+        
+                        nowIndex++;
+                        state5();
+                        return;
+                    }
+                }
+                private void state5()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == '*')
+                    {
+                        nowIndex++;
+                        state6();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != '*' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+        
+                        nowIndex++;
+                        state6();
+                        return;
+                    }
+                }
+                private void state6()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+        
+                    if (str[nowIndex] == ',')
+                    {
+                        nowIndex++;
+                        state7();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != ',' && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+                        if (str[nowIndex] == ',')
+                        {
+                            nowIndex++;
+                            state7();
+                            return;
+                        }
+                    }
+                }
+                private void state7()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == '*')
+                    {
+                        nowIndex++;
+                        state9();
+                        return;
+                    }
+        
+                    if (IsDigit(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state8();
+                        return;
+                    }
+        
+                    string err = "";
+                    int pos = this.nowIndex;
+                    while (str[nowIndex] != '*' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
+                    {
+                        err += str[nowIndex];
+                        nowIndex++;
+                        if (nowIndex >= str.Length)
+                        {
+                            error(pos, err);
+                            error(nowIndex, "Отсутствует ;");
+                            return;
+                        }
+                    }
+        
+                    error(pos, err);
+        
+                    if (str[nowIndex] == ';')
+                    {
+                        nowIndex++;
+                        state13();
+                        return;
+                    }
+                    if (str[nowIndex] == '*')
+                    {
+                        nowIndex++;
+                        state9();
+                        return;
+                    }
+                    if (IsDigit(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state8();
+                        return;
+                    }
+                }
+                private void state8()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+                    if (str[nowIndex] == ')')
+                    {
+                        nowIndex++;
+                        state10();
+                        return;
+                    }
+                    if (IsDigit(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state8();
+                        return;
+                    }
+        
+                    string err = "";
+                    int pos = this.nowIndex;
+                    while (str[nowIndex] != ')' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
+                    {
+                        err += str[nowIndex];
+                        nowIndex++;
+                        if (nowIndex >= str.Length)
+                        {
+                            error(pos, err);
+                            error(nowIndex, "Отсутствует ;");
+                            return;
+                        }
+                    }
+        
+                    error(pos, err);
+        
+                    if (str[nowIndex] == ';')
+                    {
+                        nowIndex++;
+                        state13();
+                        return;
+                    }
+                    if (str[nowIndex] == ')')
+                    {
+                        nowIndex++;
+                        state10();
+                        return;
+                    }
+                    if (IsDigit(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state8();
+                        return;
+                    }
+                }
+                private void state9()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+        
+                    if (str[nowIndex] == ')')
+                    {
+                        nowIndex++;
+                        state10();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (str[nowIndex] != ')' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+                        if (str[nowIndex] == ')')
+                        {
+                            nowIndex++;
+                            state10();
+                            return;
+                        }
+                    }
+                }
+                private void state10()
+                {
+                    if (nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+        
+                    if (isChar(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state11();
+                        return;
+                    }
+                    else
+                    {
+                        string err = "";
+                        int pos = this.nowIndex;
+                        while (!isChar(str[nowIndex]) && str[nowIndex] != ';')
+                        {
+                            err += str[nowIndex];
+                            nowIndex++;
+                            if (nowIndex >= str.Length)
+                            {
+                                error(pos, err);
+                                error(nowIndex, "Отсутствует ;");
+                                return;
+                            }
+                        }
+        
+                        error(pos, err);
+        
+                        if (str[nowIndex] == ';')
+                        {
+                            nowIndex++;
+                            state13();
+                            return;
+                        }
+                        if (isChar(str[nowIndex]))
+                        {
+                            nowIndex++;
+                            state11();
+                            return;
+                        }
+                    }
+                }
+                private void state11()
+                {
+                    if(nowIndex >= str.Length)
+                    {
+                        error(nowIndex, "Отсутствует ;");
+                        return;
+                    }
+        
+                    if (isChar(str[nowIndex]) || IsDigit(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state11();
+                        return;
+                    }
+                    if (str[nowIndex] == ',')
+                    {
+                        nowIndex++;
+                        state10();
+                        return;
+                    }
+                    if (str[nowIndex] == ';')
+                    {
+                        nowIndex++;
+                        state13();
+                        return;
+                    }
+        
+                    string err = "";
+                    int pos = this.nowIndex;
+                    while (str[nowIndex] != ',' && !(IsDigit(str[nowIndex]) || isChar(str[nowIndex])) && str[nowIndex] != ';')
+                    {
+                        err += str[nowIndex];
+                        nowIndex++;
+                        if (nowIndex >= str.Length)
+                        {
+                            error(pos, err);
+                            error(nowIndex, "Отсутствует ;");
+                            return;
+                        }
+                    }
+        
+                    error(pos, err);
+        
+                    if (str[nowIndex] == ';')
+                    {
+                        nowIndex++;
+                        state13();
+                        return;
+                    }
+                    if (str[nowIndex] == ',')
+                    {
+                        nowIndex++;
+                        state10();
+                        return;
+                    }
+                    if (IsDigit(str[nowIndex]) || isChar(str[nowIndex]))
+                    {
+                        nowIndex++;
+                        state11();
+                        return;
+                    }
+                }
+                
+                private void state13()
+                {
+                    return;
+                }
+                private bool isChar(char ch)
+                {
+                    return char.IsLetter(ch);
+                }
+                private bool IsDigit(char ch)
+                {
+                    return char.IsDigit(ch);
+                }
+               
+                public void isRelate()
+                {
+                    this.log = "";
+                    state0();
+                }
+            }
+        }
+        
