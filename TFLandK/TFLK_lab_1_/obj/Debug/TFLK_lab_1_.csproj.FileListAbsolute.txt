@@ -167,4 +167,3 @@ C:\Users\Дима\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.cspr
 C:\Users\Дима\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csproj.CoreCompileInputs.cache
 C:\Users\Дима\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.exe
 C:\Users\Дима\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.pdb
-C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Debug\TFLK_lab_1_.csprojAssemblyReference.cache
