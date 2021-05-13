@@ -241,7 +241,7 @@ namespace TFLK_lab_1_
 
             string err = "";
             int pos = this.nowIndex;
-            while (str[nowIndex] != ')' && str[nowIndex] != '*' && str[nowIndex] != ';')
+            while (str[nowIndex] != ')' && str[nowIndex] != '*' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
             {
                 err += str[nowIndex];
                 nowIndex++;
@@ -276,6 +276,13 @@ namespace TFLK_lab_1_
             {
                 nowIndex++;
                 state9();
+                return;
+            }
+
+            if (IsDigit(str[nowIndex]))
+            {
+                nowIndex++;
+                state8();
                 return;
             }
 

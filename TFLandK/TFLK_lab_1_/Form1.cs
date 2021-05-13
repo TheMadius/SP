@@ -260,6 +260,8 @@ namespace TFLK_lab_1_
                 return;
             }
 
+            this.textResult.SelectionFont = new Font("Tahoma", 14);
+
             if (backstackState[tabControl1.SelectedIndex].Count == 0)
             {
                 this.nextState.Enabled = false;

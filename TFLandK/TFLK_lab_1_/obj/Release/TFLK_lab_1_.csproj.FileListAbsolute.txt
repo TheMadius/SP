@@ -1,7 +1,6 @@
 C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\bin\Release\TFLK_lab_1_.exe.config
 C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\bin\Release\TFLK_lab_1_.exe
 C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\bin\Release\TFLK_lab_1_.pdb
-C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.csprojAssemblyReference.cache
 C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.Form1.resources
 C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.Form2.resources
 C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.Form3.resources
