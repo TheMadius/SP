@@ -46,9 +46,9 @@ namespace TFLK_lab_1_
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TFLK_lab_1_.Resource1.GRAF;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 174);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 123);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(585, 214);
+            this.pictureBox1.Size = new System.Drawing.Size(585, 265);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
