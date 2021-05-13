@@ -113,8 +113,9 @@ namespace TFLK_lab_1_
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, err);
-                        error(nowIndex, "Отсутствует ;");
+                        nowIndex = pos;
+                        error(pos, "Отсутствует 1 значение");
+                        state6();
                         return;
                     }
                 }
@@ -173,8 +174,9 @@ namespace TFLK_lab_1_
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, "Некорректные значения:" + err);
-                        error(nowIndex, "Отсутствует ;");
+                        nowIndex = pos;
+                        error(pos, "Отсутствует ,");
+                        state7();
                         return;
                     }
                 }
@@ -245,8 +247,9 @@ namespace TFLK_lab_1_
                 nowIndex++;
                 if (nowIndex >= str.Length)
                 {
-                    error(pos, err);
-                    error(nowIndex, "Отсутствует ;");
+                    nowIndex = pos;
+                    error(pos, "Отсутствует 2 значение");
+                    state9();
                     return;
                 }
             }
