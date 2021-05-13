@@ -11,6 +11,7 @@ namespace TFLK_lab_1_
         string str;
         int nowIndex;
         string log;
+        string read;
 
         public string Log { get => log; }
 
@@ -208,17 +209,30 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
+                if (!read.Equals("read"))
+                    error(nowIndex, "Ожидался оператор read");
                 error(nowIndex, "Отсутствует ;");
+                return;
+            }
+            if(isChar(this.str[this.nowIndex]))
+            {
+                this.read += this.str[this.nowIndex];
+                nowIndex++;
+                state4();
                 return;
             }
             if (str[nowIndex] == '(')
             {
+                if (!read.Equals("read"))
+                    error(nowIndex, "Ожидался оператор read");
                 nowIndex++;
                 state5();
                 return;
             }
             else
             {
+                if (!read.Equals("read"))
+                    error(nowIndex, "Ожидался оператор read");
                 string err = "";
                 int pos = this.nowIndex;
                 while (str[nowIndex] != '(' && str[nowIndex] != ';')
@@ -264,7 +278,7 @@ namespace TFLK_lab_1_
             {
                 string err = "";
                 int pos = this.nowIndex;
-                while (str[nowIndex] != '*' && str[nowIndex] != ';')
+                while (str[nowIndex] != ',' && str[nowIndex] != '*' && str[nowIndex] != ')' && str[nowIndex] != ';')
                 {
                     err += str[nowIndex];
                     nowIndex++;
@@ -284,10 +298,25 @@ namespace TFLK_lab_1_
                     state13();
                     return;
                 }
+                if (str[nowIndex] == ')')
+                {
+                    nowIndex++;
+                    state10();
+                    return;
+                }
+                if (str[nowIndex] == '*')
+                {
+                    nowIndex++;
+                    state6();
+                    return;
+                }
+                if (str[nowIndex] == ',')
+                {
+                    nowIndex++;
+                    state7();
+                    return;
+                }
 
-                nowIndex++;
-                state6();
-                return;
             }
         }
         private void state6()
@@ -308,7 +337,7 @@ namespace TFLK_lab_1_
             {
                 string err = "";
                 int pos = this.nowIndex;
-                while (str[nowIndex] != ',' && str[nowIndex] != ';')
+                while (str[nowIndex] != ',' && str[nowIndex] != '*' && str[nowIndex] != ')' && !this.isChar(str[nowIndex]) && str[nowIndex] != ';')
                 {
                     err += str[nowIndex];
                     nowIndex++;
@@ -321,7 +350,24 @@ namespace TFLK_lab_1_
                 }
 
                 error(pos, err);
-
+                if (this.isChar(str[nowIndex]))
+                {
+                    nowIndex++;
+                    state11();
+                    return;
+                }           
+                if (str[nowIndex] == ')')
+                {
+                    nowIndex++;
+                    state10();
+                    return;
+                }
+                if (str[nowIndex] == '*')
+                {
+                    nowIndex++;
+                    state9();
+                    return;
+                }
                 if (str[nowIndex] == ';')
                 {
                     nowIndex++;
@@ -359,7 +405,7 @@ namespace TFLK_lab_1_
 
             string err = "";
             int pos = this.nowIndex;
-            while (str[nowIndex] != '*' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
+            while (str[nowIndex] != ')' && !isChar(str[nowIndex]) && str[nowIndex] != ';')
             {
                 err += str[nowIndex];
                 nowIndex++;
@@ -379,17 +425,19 @@ namespace TFLK_lab_1_
                 state13();
                 return;
             }
-            if (str[nowIndex] == '*')
+            if (str[nowIndex] == ')')
             {
                 nowIndex++;
-                state9();
+                state10();
                 return;
-            }
-            if (IsDigit(str[nowIndex]))
+            
+            }     
+            if (isChar(str[nowIndex]))
             {
                 nowIndex++;
-                state8();
+                state11();
                 return;
+            
             }
         }
         private void state8()
@@ -414,7 +462,7 @@ namespace TFLK_lab_1_
 
             string err = "";
             int pos = this.nowIndex;
-            while (str[nowIndex] != ')' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
+            while (str[nowIndex] != ')' && !IsDigit(str[nowIndex]) && !isChar(str[nowIndex]) && str[nowIndex] != ';')
             {
                 err += str[nowIndex];
                 nowIndex++;
@@ -446,6 +494,12 @@ namespace TFLK_lab_1_
                 state8();
                 return;
             }
+            if (isChar(str[nowIndex]))
+            {
+                nowIndex++;
+                state11();
+                return;
+            }
         }
         private void state9()
         {
@@ -465,7 +519,7 @@ namespace TFLK_lab_1_
             {
                 string err = "";
                 int pos = this.nowIndex;
-                while (str[nowIndex] != ')' && !IsDigit(str[nowIndex]) && str[nowIndex] != ';')
+                while (str[nowIndex] != ')' && str[nowIndex] != ';')
                 {
                     err += str[nowIndex];
                     nowIndex++;
@@ -618,7 +672,8 @@ namespace TFLK_lab_1_
         public void isRelate()
         {
             this.log = "";
-            state0();
+            this.read = "";
+            state4();
         }
     }
 }
