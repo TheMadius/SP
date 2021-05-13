@@ -24,7 +24,7 @@ namespace TFLK_lab_1_
 
         private void error(int pos, string e)
         {
-            log += "Ошибка!! Строка " + e + " , Позиция " + pos + "\n";
+            log += "Ошибка!! " + e + ", Позиция " + pos + "\n";
         }
 
         public void setString(string str)
@@ -33,178 +33,7 @@ namespace TFLK_lab_1_
             this.str = str;
             this.log = "";
         }
-
-        private void state0()
-        {
-            if (nowIndex >= str.Length)
-            {
-                error(nowIndex, "Отсутствует ;");
-                return;
-            }
-
-            if (str[nowIndex] == 'r')
-            {
-                nowIndex++;
-                state1();
-                return;
-            }
-            else
-            {
-                string err = "";
-                int pos = this.nowIndex;
-                while(str[nowIndex] != 'r' && str[nowIndex] != ';')
-                {
-                    err += str[nowIndex];
-                    nowIndex++;
-                    if (nowIndex >= str.Length)
-                    {
-                        error(pos, err);
-                        error(nowIndex, "Отсутствует ;");
-                        return;
-                    }
-                }
-                error(pos,err);
-
-                if (str[nowIndex] == ';')
-                {
-                    nowIndex++;
-                    state13();
-                    return;
-                }
-
-                nowIndex++;
-                state1();
-                return;
-            }
-        }
-        private void state1()
-        {
-            if (nowIndex >= str.Length)
-            {
-                error(nowIndex, "Отсутствует ;");
-                return;
-            }
-            if (str[nowIndex] == 'e')
-            {
-                nowIndex++;
-                state2();
-                return;
-            }
-            else
-            {
-                string err = "";
-                int pos = this.nowIndex;
-                while (str[nowIndex] != 'e' && str[nowIndex] != ';')
-                {
-                    err += str[nowIndex];
-                    nowIndex++;
-                    if (nowIndex >= str.Length)
-                    {
-                        error(pos, err);
-                        error(nowIndex, "Отсутствует ;");
-                        return;
-                    }
-                }
-                error(pos, err);
-
-                if (str[nowIndex] == ';')
-                {
-                    nowIndex++;
-                    state13();
-                    return;
-                }
-
-                nowIndex++;
-                state2();
-                return;
-            }
-        }
-        private void state2()
-        {
-            if (nowIndex >= str.Length)
-            {
-                error(nowIndex, "Отсутствует ;");
-                return;
-            }
-            if (str[nowIndex] == 'a')
-            {
-                nowIndex++;
-                state3();
-                return;
-            }
-            else
-            {
-                string err = "";
-                int pos = this.nowIndex;
-                while (str[nowIndex] != 'a' && str[nowIndex] != ';')
-                {
-                    err += str[nowIndex];
-                    nowIndex++;
-                    if (nowIndex >= str.Length)
-                    {
-                        error(pos, err);
-                        error(nowIndex, "Отсутствует ;");
-                        return;
-                    }
-                }
-
-                error(pos, err);
-
-                if (str[nowIndex] == ';')
-                {
-                    nowIndex++;
-                    state13();
-                    return;
-                }
-                
-                nowIndex++;
-                state3();
-                return;
-            }
-        }
-        private void state3()
-        {
-            if (nowIndex >= str.Length)
-            {
-                error(nowIndex, "Отсутствует ;");
-                return;
-            }
-            if (str[nowIndex] == 'd')
-            {
-                nowIndex++;
-                state4();
-                return;
-            }
-            else
-            {
-                string err = "";
-                int pos = this.nowIndex;
-                while (str[nowIndex] != 'd' && str[nowIndex] != ';')
-                {
-                    err += str[nowIndex];
-                    nowIndex++;
-                    if (nowIndex >= str.Length)
-                    {
-                        error(pos, err);
-                        error(nowIndex, "Отсутствует ;");
-                        return;
-                    }
-                }
-
-                error(pos, err);
-
-                if (str[nowIndex] == ';')
-                {
-                    nowIndex++;
-                    state13();
-                    return;
-                }
-
-                nowIndex++;
-                state4();
-                return;
-            }
-        }
+    
         private void state4()
         {
             if (nowIndex >= str.Length)
@@ -241,13 +70,13 @@ namespace TFLK_lab_1_
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, err);
+                        error(pos, "Некорректные символы:" + err);
                         error(nowIndex, "Отсутствует ;");
                         return;
                     }
                 }
 
-                error(pos, err);
+                error(pos, "Некорректные символы:" + err);
 
                 if (str[nowIndex] == ';')
                 {
@@ -289,34 +118,35 @@ namespace TFLK_lab_1_
                         return;
                     }
                 }
-
-                error(pos, err);
-
-                if (str[nowIndex] == ';')
+                if (str[nowIndex] == ',')
                 {
                     nowIndex++;
-                    state13();
+                    error(pos, (err == "") ? "Отсутствует 1 значение" : "Некорректные значения:" + err);
+                    state7();
                     return;
                 }
                 if (str[nowIndex] == ')')
                 {
-                    nowIndex++;
-                    state10();
+                    error(pos, (err == "") ? "Отсутствует 1 значение" : "Некорректные значения:" + err);
+                    state6();
                     return;
                 }
+                if (str[nowIndex] == ';')
+                {
+                    nowIndex = pos;
+                    error(pos, "Отсутствует 1 значение");
+                    state6();
+                    return;
+                }
+
+                error(pos, "Некорректные значения:" + err);
+
                 if (str[nowIndex] == '*')
                 {
                     nowIndex++;
                     state6();
                     return;
                 }
-                if (str[nowIndex] == ',')
-                {
-                    nowIndex++;
-                    state7();
-                    return;
-                }
-
             }
         }
         private void state6()
@@ -337,43 +167,47 @@ namespace TFLK_lab_1_
             {
                 string err = "";
                 int pos = this.nowIndex;
-                while (str[nowIndex] != ',' && str[nowIndex] != '*' && str[nowIndex] != ')' && !this.isChar(str[nowIndex]) && str[nowIndex] != ';')
+                while (str[nowIndex] != ',' && str[nowIndex] != '*' && !IsDigit(str[nowIndex]) && str[nowIndex] != ')' && str[nowIndex] != ';')
                 {
                     err += str[nowIndex];
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, err);
+                        error(pos, "Некорректные значения:" + err);
                         error(nowIndex, "Отсутствует ;");
                         return;
                     }
                 }
 
-                error(pos, err);
-                if (this.isChar(str[nowIndex]))
-                {
-                    nowIndex++;
-                    state11();
-                    return;
-                }           
                 if (str[nowIndex] == ')')
                 {
-                    nowIndex++;
-                    state10();
+                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err);
+                    state7();
                     return;
                 }
                 if (str[nowIndex] == '*')
                 {
+                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err);
                     nowIndex++;
                     state9();
                     return;
                 }
-                if (str[nowIndex] == ';')
+                if (IsDigit(str[nowIndex]))
                 {
+                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err);
                     nowIndex++;
-                    state13();
+                    state8();
                     return;
                 }
+                if (str[nowIndex] == ';')
+                {
+                    nowIndex = pos;
+                    error(pos, "Отсутствует ," );
+                    state7();
+                    return;
+                }
+                error(pos, "Некорректные значения:"+ err);
+
                 if (str[nowIndex] == ',')
                 {
                     nowIndex++;
@@ -405,7 +239,7 @@ namespace TFLK_lab_1_
 
             string err = "";
             int pos = this.nowIndex;
-            while (str[nowIndex] != ')' && !isChar(str[nowIndex]) && str[nowIndex] != ';')
+            while (str[nowIndex] != ')' && str[nowIndex] != '*' && str[nowIndex] != ';')
             {
                 err += str[nowIndex];
                 nowIndex++;
@@ -417,28 +251,31 @@ namespace TFLK_lab_1_
                 }
             }
 
-            error(pos, err);
-
-            if (str[nowIndex] == ';')
-            {
-                nowIndex++;
-                state13();
-                return;
-            }
             if (str[nowIndex] == ')')
             {
+                error(pos, (err=="")? "Отсутствует 2 значение": "Некорректные значения:" + err);
                 nowIndex++;
                 state10();
                 return;
-            
-            }     
-            if (isChar(str[nowIndex]))
+            }
+
+            if (str[nowIndex] == ';')
+            {
+                nowIndex = pos;
+                error(pos, "Отсутствует 2 значение");
+                state9();
+                return;
+            }
+
+            error(pos, "Некорректные значения: " + err);
+
+            if (str[nowIndex] == '*')
             {
                 nowIndex++;
-                state11();
+                state9();
                 return;
-            
             }
+
         }
         private void state8()
         {
@@ -447,12 +284,14 @@ namespace TFLK_lab_1_
                 error(nowIndex, "Отсутствует ;");
                 return;
             }
+
             if (str[nowIndex] == ')')
             {
                 nowIndex++;
                 state10();
                 return;
             }
+
             if (IsDigit(str[nowIndex]))
             {
                 nowIndex++;
@@ -462,26 +301,27 @@ namespace TFLK_lab_1_
 
             string err = "";
             int pos = this.nowIndex;
-            while (str[nowIndex] != ')' && !IsDigit(str[nowIndex]) && !isChar(str[nowIndex]) && str[nowIndex] != ';')
+            while (str[nowIndex] != ')' && !IsDigit(str[nowIndex])  && str[nowIndex] != ';')
             {
                 err += str[nowIndex];
                 nowIndex++;
                 if (nowIndex >= str.Length)
                 {
-                    error(pos, err);
-                    error(nowIndex, "Отсутствует ;");
+                    nowIndex = pos;
+                    error(pos, "Отсутствует символ « ) »");
+                    state10();
                     return;
                 }
             }
 
-            error(pos, err);
-
             if (str[nowIndex] == ';')
             {
-                nowIndex++;
-                state13();
+                nowIndex = pos;
+                error(pos, "Отсутствует символ « ) »");
+                state10();
                 return;
             }
+            error(pos, "Некорректные значения:" + err);
             if (str[nowIndex] == ')')
             {
                 nowIndex++;
@@ -492,12 +332,6 @@ namespace TFLK_lab_1_
             {
                 nowIndex++;
                 state8();
-                return;
-            }
-            if (isChar(str[nowIndex]))
-            {
-                nowIndex++;
-                state11();
                 return;
             }
         }
@@ -525,20 +359,21 @@ namespace TFLK_lab_1_
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, err);
-                        error(nowIndex, "Отсутствует ;");
+                        nowIndex = pos;
+                        error(pos, "Отсутствует символ « ) »");
+                        state10();
                         return;
                     }
                 }
-
-                error(pos, err);
-
                 if (str[nowIndex] == ';')
                 {
-                    nowIndex++;
-                    state13();
+                    nowIndex = pos;
+                    error(pos, "Отсутствует символ « ) »");
+                    state10();
                     return;
                 }
+                error(pos, "Некорректные значения:" + err);
+                
                 if (str[nowIndex] == ')')
                 {
                     nowIndex++;
@@ -577,7 +412,7 @@ namespace TFLK_lab_1_
                     }
                 }
 
-                error(pos, err);
+                error(pos, "Некорректные значения:" + err);
 
                 if (str[nowIndex] == ';')
                 {
@@ -634,7 +469,7 @@ namespace TFLK_lab_1_
                 }
             }
 
-            error(pos, err);
+            error(pos, "Некорректные значения:" + err);
 
             if (str[nowIndex] == ';')
             {
