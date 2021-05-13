@@ -70,24 +70,29 @@ namespace TFLK_lab_1_
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, "Некорректные символы:" + err);
-                        error(nowIndex, "Отсутствует ;");
+                        nowIndex = pos;
+                        error(pos, "Отсутствует символ « ) »");
+                        state5();
                         return;
                     }
                 }
 
-                error(pos, "Некорректные символы:" + err);
-
                 if (str[nowIndex] == ';')
                 {
-                    nowIndex++;
-                    state13();
+                    nowIndex = pos;
+                    error(pos, "Отсутствует символ « ( »");
+                    state5();
                     return;
                 }
 
-                nowIndex++;
-                state5();
-                return;
+                error(pos, "Некорректные символы:" + err);
+
+                if (str[nowIndex] == '(')
+                {
+                    nowIndex++;
+                    state5();
+                    return;
+                }
             }
         }
         private void state5()
