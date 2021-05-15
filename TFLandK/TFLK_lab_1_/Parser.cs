@@ -22,9 +22,17 @@ namespace TFLK_lab_1_
             this.log = "";
         }
 
-        private void error(int pos, string e)
+        private void error(int pos, string e,int NUM = 0)
         {
-            log += "Ошибка!! " + e + ", Позиция " + pos + "\n";
+            string str = "";
+            string erno = "";
+            str += "Ошибка!! " + e + ", Позиция " + pos + "\n";
+            for (int i = 0; i < pos; i++)
+                erno += " ";
+            erno += "^"+"\n";
+            str += this.str.Insert(pos, (NUM == 0)? " ":"") + "\n";
+            str += erno + "\n";
+            log += str; 
         }
 
         public void setString(string str)
@@ -127,13 +135,13 @@ namespace TFLK_lab_1_
                 if (str[nowIndex] == ',')
                 {
                     nowIndex++;
-                    error(pos, (err == "") ? "Отсутствует 1 значение" : "Некорректные значения:" + err);
+                    error(pos, (err == "") ? "Отсутствует 1 значение" : "Некорректные значения:" + err, (err == "") ? 0 : 1);
                     state7();
                     return;
                 }
                 if (str[nowIndex] == ')')
                 {
-                    error(pos, (err == "") ? "Отсутствует 1 значение" : "Некорректные значения:" + err);
+                    error(pos, (err == "") ? "Отсутствует 1 значение" : "Некорректные значения:" + err, (err == "")?0:1);
                     state6();
                     return;
                 }
@@ -145,7 +153,7 @@ namespace TFLK_lab_1_
                     return;
                 }
 
-                error(pos, "Некорректные значения:" + err);
+                error(pos, "Некорректные значения:" + err,1);
 
                 if (str[nowIndex] == '*')
                 {
@@ -188,20 +196,20 @@ namespace TFLK_lab_1_
 
                 if (str[nowIndex] == ')')
                 {
-                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err);
+                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err, (err == "") ? 0 : 1);
                     state7();
                     return;
                 }
                 if (str[nowIndex] == '*')
                 {
-                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err);
+                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err, (err == "") ? 0 : 1);
                     nowIndex++;
                     state9();
                     return;
                 }
                 if (IsDigit(str[nowIndex]))
                 {
-                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err);
+                    error(pos, (err == "") ? "Отсутствует ," : "Ожидалась \',\' , а встретилась " + err, (err == "") ? 0 : 1);
                     nowIndex++;
                     state8();
                     return;
@@ -213,7 +221,7 @@ namespace TFLK_lab_1_
                     state7();
                     return;
                 }
-                error(pos, "Некорректные значения:"+ err);
+                error(pos, "Некорректные значения:"+ err,1);
 
                 if (str[nowIndex] == ',')
                 {
@@ -261,7 +269,7 @@ namespace TFLK_lab_1_
 
             if (str[nowIndex] == ')')
             {
-                error(pos, (err=="")? "Отсутствует 2 значение": "Некорректные значения:" + err);
+                error(pos, (err=="")? "Отсутствует 2 значение": "Некорректные значения:" + err, (err == "") ? 0 : 1);
                 nowIndex++;
                 state10();
                 return;
@@ -275,7 +283,7 @@ namespace TFLK_lab_1_
                 return;
             }
 
-            error(pos, "Некорректные значения: " + err);
+            error(pos, "Некорректные значения: " + err,1);
 
             if (str[nowIndex] == '*')
             {
@@ -336,7 +344,7 @@ namespace TFLK_lab_1_
                 state10();
                 return;
             }
-            error(pos, "Некорректные значения:" + err);
+            error(pos, "Некорректные значения:" + err,1);
             if (str[nowIndex] == ')')
             {
                 nowIndex++;
@@ -387,7 +395,7 @@ namespace TFLK_lab_1_
                     state10();
                     return;
                 }
-                error(pos, "Некорректные значения:" + err);
+                error(pos, "Некорректные значения:" + err,1);
                 
                 if (str[nowIndex] == ')')
                 {
@@ -401,6 +409,7 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
+                error(nowIndex, "Отсутствует идентификатор переменной");
                 error(nowIndex, "Отсутствует ;");
                 return;
             }
@@ -415,26 +424,33 @@ namespace TFLK_lab_1_
             {
                 string err = "";
                 int pos = this.nowIndex;
-                while (!isChar(str[nowIndex]) && str[nowIndex] != ';')
+                while (!isChar(str[nowIndex]) && str[nowIndex] != ',' && str[nowIndex] != ';')
                 {
                     err += str[nowIndex];
                     nowIndex++;
                     if (nowIndex >= str.Length)
                     {
-                        error(pos, err);
+                        error(pos, (err == "") ? "Отсутствует идентификатор переменной" : "Некорректные значения:" + err, (err == "") ? 0 : 1);
                         error(nowIndex, "Отсутствует ;");
                         return;
                     }
                 }
-
-                error(pos, "Некорректные значения:" + err);
-
                 if (str[nowIndex] == ';')
                 {
+                    error(pos, (err == "") ? "Отсутствует идентификатор переменной" : "Некорректные значения:" + err, (err == "") ? 0 : 1);
                     nowIndex++;
                     state13();
                     return;
                 }
+                if (str[nowIndex] == ',')
+                {
+                    nowIndex++;
+                    error(pos, (err == "") ? "Отсутствует идентификатор переменной" : "Некорректные значения: " + err, (err == "") ? 0 : 1);
+                    state10();
+                    return;
+                }
+                error(pos, "Некорректные значения:" + err,1);
+
                 if (isChar(str[nowIndex]))
                 {
                     nowIndex++;
@@ -484,7 +500,7 @@ namespace TFLK_lab_1_
                 }
             }
 
-            error(pos, "Некорректные значения:" + err);
+            error(pos, "Некорректные значения:" + err,1);
 
             if (str[nowIndex] == ';')
             {

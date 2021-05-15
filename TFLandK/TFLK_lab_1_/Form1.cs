@@ -26,7 +26,7 @@ namespace TFLK_lab_1_
 
             this.backState.Enabled = false;
             this.nextState.Enabled = false;
-            this.textResult.SelectionFont = new Font("Tahoma", 14);
+            this.textResult.Font = new Font(FontFamily.GenericMonospace, 14);
         }
 
         private void NewList_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace TFLK_lab_1_
             NewText.Size = new System.Drawing.Size(762, 165);
             NewText.TabIndex = 9;
             NewText.TextChanged += new System.EventHandler(this.TextEnter_TextChanged);
-            NewText.SelectionFont = new Font("Tahoma", 14);
+            NewText.Font = new Font("Arial", 14);
 
             TabPage myTabPage = new TabPage(namePage);
             myTabPage.Controls.Add(NewText);
@@ -260,8 +260,6 @@ namespace TFLK_lab_1_
                 return;
             }
 
-            this.textResult.SelectionFont = new Font("Tahoma", 14);
-
             if (backstackState[tabControl1.SelectedIndex].Count == 0)
             {
                 this.nextState.Enabled = false;
@@ -375,10 +373,10 @@ namespace TFLK_lab_1_
                 }
                 else
                 {
-                    int kol = 1;
+                    int kol = 0;
                     foreach (var element in log.Split(new char[] { '\n' }))
                     {
-                        this.textResult.Text += ((element != "") ? kol + ") " : "") + element + "\n";
+                        this.textResult.Text += ((element != "") ? ((kol%4 == 0)?((kol+1)/4 + 1)+ ") ":" ") : "") + element + "\n";
                         kol++;
                     }
                 }
