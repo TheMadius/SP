@@ -26,7 +26,7 @@ namespace TFLK_lab_1_
 
             this.backState.Enabled = false;
             this.nextState.Enabled = false;
-            this.textResult.Font = new Font(FontFamily.GenericMonospace, 14);
+            this.textResult.Font = new Font(FontFamily.GenericMonospace, 12);
         }
 
         private void NewList_Click(object sender, EventArgs e)

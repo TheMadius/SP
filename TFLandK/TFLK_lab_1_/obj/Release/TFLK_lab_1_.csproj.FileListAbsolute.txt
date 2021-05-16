@@ -51,3 +51,4 @@ C:\Users\Madius\source\repos\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.csproj.
 C:\Users\Madius\source\repos\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.csproj.CoreCompileInputs.cache
 C:\Users\Madius\source\repos\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.exe
 C:\Users\Madius\source\repos\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.pdb
+C:\Users\Madius\source\repos\SP\TFLandK\TFLK_lab_1_\obj\Release\TFLK_lab_1_.csprojAssemblyReference.cache
