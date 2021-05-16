@@ -48,7 +48,8 @@ namespace TFLK_lab_1_
             {
                 if (!read.Equals("read"))
                     error(nowIndex, "Ожидался оператор read");
-                error(nowIndex, "Отсутствует ;");
+                error(nowIndex, "Отсутствует символ « ( »");
+                state5();
                 return;
             }
             if(isChar(this.str[this.nowIndex]))
@@ -79,7 +80,7 @@ namespace TFLK_lab_1_
                     if (nowIndex >= str.Length)
                     {
                         nowIndex = pos;
-                        error(pos, "Отсутствует символ « ) »");
+                        error(pos, "Отсутствует символ « ( »");
                         state5();
                         return;
                     }
@@ -107,7 +108,8 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
-                error(nowIndex, "Отсутствует ;");
+                error(nowIndex, "Отсутствует 1 значение");
+                state6();
                 return;
             }
             if (str[nowIndex] == '*')
@@ -167,7 +169,8 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
-                error(nowIndex, "Отсутствует ;");
+                error(nowIndex, "Отсутствует ,");
+                state7();
                 return;
             }
 
@@ -235,7 +238,8 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
-                error(nowIndex, "Отсутствует ;");
+                error(nowIndex, "Отсутствует 2 значение");
+                state9();
                 return;
             }
             if (str[nowIndex] == '*')
@@ -304,7 +308,8 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
-                error(nowIndex, "Отсутствует ;");
+                error(nowIndex, "Отсутствует символ « ) »");
+                state10();
                 return;
             }
 
@@ -362,7 +367,8 @@ namespace TFLK_lab_1_
         {
             if (nowIndex >= str.Length)
             {
-                error(nowIndex, "Отсутствует ;");
+                error(nowIndex, "Отсутствует символ « ) »");
+                state10();
                 return;
             }
 
